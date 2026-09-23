@@ -44,10 +44,16 @@ export default function ProductTextOverlays({
         <div className="flex items-center justify-between sm:justify-start gap-2.5 w-full sm:w-auto pointer-events-auto max-w-sm sm:max-w-none">
           {/* Unveil Feast Button */}
           <button
-            onClick={() => onSeek(0.55)}
+            onClick={() => {
+              if (progress >= 0.88) {
+                onSeek(0.0);
+              } else {
+                onSeek(1.0);
+              }
+            }}
             className="flex-1 sm:flex-initial px-4 py-2.5 sm:px-6 sm:py-3 rounded-full bg-gradient-to-r from-palegar-chilli via-palegar-crimson to-palegar-chilli text-palegar-text font-bold text-xs sm:text-sm tracking-wider uppercase border border-palegar-gold/60 shadow-2xl shadow-palegar-chilli/50 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-1.5 whitespace-nowrap"
           >
-            <span>Unveil Feast</span>
+            <span>{progress >= 0.88 ? 'Replay Feast' : 'Unveil Feast'}</span>
             <ArrowRight className="w-3.5 h-3.5 text-palegar-gold shrink-0" />
           </button>
 

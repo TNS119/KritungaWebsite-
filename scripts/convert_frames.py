@@ -4,7 +4,12 @@ from PIL import Image
 
 def convert_frames():
     src_dir = os.path.join(os.getcwd(), 'ezgif-7bdb9ab101e0fc17-jpg')
-    out_dir = os.path.join(os.getcwd(), 'public', 'images', 'kritunga')
+    # Support running from root or within frontend directory
+    base_dir = os.getcwd()
+    if os.path.exists(os.path.join(base_dir, 'frontend')):
+        out_dir = os.path.join(base_dir, 'frontend', 'public', 'images', 'kritunga')
+    else:
+        out_dir = os.path.join(base_dir, 'public', 'images', 'kritunga')
     os.makedirs(out_dir, exist_ok=True)
     
     files = sorted(glob.glob(os.path.join(src_dir, 'ezgif-frame-*.jpg')))

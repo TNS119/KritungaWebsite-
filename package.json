@@ -1,31 +1,22 @@
 {
-  "name": "kritunga-cinematic-web",
+  "name": "kritunga-monorepo",
   "version": "1.0.0",
   "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "canvas-confetti": "^1.9.4",
-    "clsx": "^2.1.1",
-    "framer-motion": "^11.18.2",
-    "lucide-react": "^0.474.0",
-    "next": "14.2.23",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwind-merge": "^2.6.0"
+    "dev": "concurrently -n \"FRONTEND,BACKEND\" -c \"cyan.bold,yellow.bold\" \"npm run dev --workspace=frontend\" \"npm run dev --workspace=backend\"",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:backend": "npm run dev --workspace=backend",
+    "build": "npm run build --workspace=backend && npm run build --workspace=frontend",
+    "build:frontend": "npm run build --workspace=frontend",
+    "build:backend": "npm run build --workspace=backend",
+    "start:frontend": "npm run start --workspace=frontend",
+    "start:backend": "npm run start --workspace=backend"
   },
   "devDependencies": {
-    "@types/canvas-confetti": "^1.9.0",
-    "@types/node": "^20.17.16",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.5.1",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.3"
+    "concurrently": "^8.2.2"
   }
 }

@@ -1,8 +1,9 @@
 # KRITUNGA — The Palegar's Cuisine
-### *The Royal Taste of Rayalaseema | Awwwards-Caliber Scrollytelling Experience*
+### *The Royal Taste of Rayalaseema | Awwwards-Caliber Scrollytelling Monorepo*
 
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-18.3-blue?style=for-the-badge&logo=react)](https://react.dev/)
+[![Express](https://img.shields.io/badge/Express-4.21-000000?style=for-the-badge&logo=express)](https://expressjs.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.18-orange?style=for-the-badge&logo=framer)](https://www.framer.com/motion/)
@@ -11,80 +12,59 @@
 
 ## 🌶️ Overview
 
-**KRITUNGA — The Palegar's Cuisine** is a luxury, cinematic web application that brings the fiery heritage and royal culinary traditions of Rayalaseema warlords (Palegars) to life. Built with **Next.js 14 (App Router)** and **TypeScript**, the platform merges high-converting e-commerce with immersive scrollytelling, featuring an in-place DPR-aware HTML5 canvas scrubber, sensory physics cards, interactive spice heat customizers, and seamless dual royal theming.
+**KRITUNGA — The Palegar's Cuisine** is structured as an enterprise-grade monorepo featuring a decoupled **Next.js 14 Frontend** and an **Express + TypeScript Backend API**. The platform merges high-converting e-commerce with immersive scrollytelling, featuring an in-place DPR-aware HTML5 canvas scrubber, sensory physics cards, interactive spice heat customizers, real-time order processing, and dual royal theming.
 
 ---
 
-## ✨ Flagship Features
-
-### 1. In-Place Canvas Frame-Scrubber Engine
-- **240-Frame Ultra-Fluid Sequence**: Drives a high-fidelity visual breakdown of Kritunga’s authentic potli dum biryani and earthen clay pot craft.
-- **DPR-Aware Rendering**: High-DPI / Retina display crispness with adaptive resolution downscaling on mobile devices.
-- **Dynamic Scroll Synchronization**: Powered by `requestAnimationFrame` and normalized scroll scrub ratios for 60fps frame interpolation.
-
-### 2. Dual Royal Theme System (Obsidian & Ivory)
-- **Palegar Night**: Deep obsidian (`#0A0203`), smoldering crimson (`#8C1824`), and burnished gold (`#E5A93C`).
-- **Imperial Ivory**: Regal saffron (`#FDF8F2`), ruby lacquer, and golden embroidery.
-- Zero-flicker client-side persistence via React Context (`ThemeContext.tsx`).
-
-### 3. Sensory Physics & Culinary Anatomy
-- Interactive breakdown of sacred ingredients: Guntur dry red chillies, hand-pounded 21-spice potli masala, pure cow ghee, and clay pot slow-dum cooking over wood embers.
-- Micro-interactions, ambient sound toggle, and spring-loaded hover cards powered by **Framer Motion**.
-
-### 4. Signature Palegar Feast Customizer & Instant Checkout
-- **Interactive Feast Builder**: Choose between Royal Mutton Dum Biryani, Natu Kodi Pulao, Gongura Mutton, and Ragi Sangati Mudda.
-- **Palegar Heat Calibration**: Slider selecting spice levels from *Mild Heritage* to *Rayalaseema Fiery* and *Palegar Inferno*.
-- **Celebratory Checkout Modal**: Real-time pricing calculations, quantity selectors, and instant confetti animations (`canvas-confetti`).
-
-### 5. Floating Capsule Navigation
-- Auto-tracking scroll spy pill displaying current page sections (Heritage, Crucible, Feast, Anatomy) with smooth scroll transitions.
-
----
-
-## 🛠️ Technology Stack
-
-| Technology | Purpose |
-| :--- | :--- |
-| **Next.js 14** (App Router) | React framework with optimized font loading and static export readiness |
-| **React 18** | UI component architecture and client-side state |
-| **TypeScript** | Strict end-to-end type safety |
-| **Tailwind CSS 3.4** | Utility-first styling with custom Palegar design tokens |
-| **Framer Motion 11** | Orchestrated scroll reveals, spring physics, and modal transitions |
-| **Canvas-Confetti** | Celebration feedback upon order confirmation |
-| **Lucide React** | Clean, modern typography-first iconography |
-| **Python Pillow (PIL)** | Asset optimization pipeline converting raw frames to compressed WebP |
-
----
-
-## 📂 Project Structure
+## 📂 Architecture & Directory Structure
 
 ```bash
 Kritunga Web Application/
-├── app/
-│   ├── globals.css              # Custom font bindings, animations & CSS variables
-│   ├── layout.tsx               # Root layout, Google Fonts (Cinzel & Outfit), SEO metadata
-│   ├── not-found.tsx            # Regal 404 error boundary
-│   └── page.tsx                 # Core scrollytelling assembly page
-├── components/
-│   ├── BuyNow.tsx               # Interactive feast customizer & checkout modal
-│   ├── CinematicIceSection.tsx  # Sensory crucible & spice alchemy physics cards
-│   ├── Footer.tsx               # Brand editorial footer & heritage links
-│   ├── Navbar.tsx               # Header with mobile drawer & audio controller
-│   ├── ProductBottleScroll.tsx  # 240-frame HTML5 canvas scrubber engine
-│   ├── ProductDetails.tsx       # Culinary anatomy & ingredients breakdown
-│   ├── ProductTextOverlays.tsx  # Scroll-tied typography & narrative cards
-│   └── SectionNav.tsx           # Floating scroll-spy navigation capsule
-├── context/
-│   └── ThemeContext.tsx         # Palegar Night / Imperial Ivory theme provider
-├── public/
-│   └── images/
-│       └── kritunga/            # Optimized 240 WebP sequence frames (1.webp -> 240.webp)
+├── backend/                     # Node.js + Express (TypeScript) API Service
+│   ├── src/
+│   │   ├── controllers/         # Request handling & validations
+│   │   ├── data/menuData.ts     # Palegar feasts, pricing & spice profiles
+│   │   ├── routes/
+│   │   │   ├── menu.routes.ts   # GET /api/menu & GET /api/menu/:id
+│   │   │   ├── order.routes.ts  # POST /api/orders & GET /api/orders/:id
+│   │   │   └── reservation.routes.ts # POST /api/reservations
+│   │   ├── types/               # Backend data schemas & request contracts
+│   │   └── server.ts            # Express server, CORS & health endpoints
+│   ├── .env.example             # Backend environment variable template
+│   ├── package.json             # Backend dependencies & build scripts
+│   └── tsconfig.json            # Backend TypeScript configuration
+│
+├── frontend/                    # Next.js 14 App Router Client
+│   ├── app/
+│   │   ├── globals.css          # Custom font bindings, animations & CSS variables
+│   │   ├── layout.tsx           # Google Fonts (Cinzel & Outfit), SEO metadata
+│   │   ├── not-found.tsx        # Regal 404 error boundary
+│   │   └── page.tsx             # Core scrollytelling assembly page
+│   ├── components/
+│   │   ├── BuyNow.tsx           # Interactive feast customizer & checkout modal
+│   │   ├── CinematicIceSection.tsx # Sensory crucible & spice alchemy physics cards
+│   │   ├── Footer.tsx           # Brand editorial footer & heritage links
+│   │   ├── Navbar.tsx           # Header with mobile drawer & audio controller
+│   │   ├── ProductBottleScroll.tsx # 240-frame HTML5 canvas scrubber engine
+│   │   ├── ProductDetails.tsx   # Culinary anatomy & ingredients breakdown
+│   │   ├── ProductTextOverlays.tsx # Scroll-tied typography & narrative cards
+│   │   └── SectionNav.tsx       # Floating scroll-spy navigation capsule
+│   ├── context/
+│   │   └── ThemeContext.tsx     # Palegar Night / Imperial Ivory theme provider
+│   ├── data/
+│   │   └── products.ts          # Frontend feast packs & milestone narratives
+│   ├── public/
+│   │   └── images/kritunga/     # 240 WebP canvas sequence frames (1.webp -> 240.webp)
+│   ├── next.config.mjs          # Next.js bundler configuration
+│   ├── tailwind.config.js       # Custom Palegar tokens, colors & gradients
+│   ├── tsconfig.json            # Frontend TypeScript configuration
+│   └── package.json             # Frontend client dependencies
+│
 ├── scripts/
 │   └── convert_frames.py        # Python batch optimization utility for canvas frames
-├── .gitignore                   # Ignore rules for Next.js, nodes, builds, and raw dumps
-├── package.json                 # Project dependencies & scripts
-├── tailwind.config.js           # Custom color palettes, gradients, and font families
-└── tsconfig.json                # TypeScript compiler configuration
+├── .gitignore                   # Workspace-wide ignore rules for Next.js, Node, and dist
+├── package.json                 # Monorepo root workspace orchestrator
+└── README.md                    # System documentation & developer guide
 ```
 
 ---
@@ -93,50 +73,65 @@ Kritunga Web Application/
 
 ### Prerequisites
 - **Node.js**: v18.17.0 or higher
-- **npm** / **yarn** / **pnpm**
-- **Python 3.9+** with `Pillow` (only needed if generating new WebP animation frames)
+- **npm** (v7+ with workspace support)
 
 ### Installation
+From the root directory, install all dependencies across both workspaces in a single command:
 
-1. **Clone the repository**:
-   ```bash
-   git clone <repository-url>
-   cd "Kritunga Web Application"
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **(Optional) Generate Optimized Frame Assets**:
-   If modifying or re-exporting image sequences from raw JPEG dumps:
-   ```bash
-   python scripts/convert_frames.py
-   ```
-
-4. **Start the Development Server**:
-   ```bash
-   npm run dev
-   ```
-
-5. **Open in Browser**:
-   Navigate to [http://localhost:3000](http://localhost:3000) to view the application.
+```bash
+npm install
+```
 
 ---
 
-## 🏗️ Build & Deployment
+## ⚡ Running Locally
 
-To create an optimized production build:
+### Single-Command Startup (Concurrent)
+Launch both the **Next.js Frontend** (`:3000`) and the **Express Backend** (`:5000`) simultaneously:
 
 ```bash
-npm run build
-npm run start
+npm run dev
 ```
 
-For static export deployment (Vercel, Cloudflare Pages, AWS S3 / CloudFront):
+### Individual Service Commands
+If you wish to run services individually:
+
 ```bash
-npx next build
+# Run Frontend Only (http://localhost:3000)
+npm run dev:frontend
+
+# Run Backend API Only (http://localhost:5000)
+npm run dev:backend
+```
+
+---
+
+## 📡 Backend API Endpoints
+
+The backend runs on `http://localhost:5000`:
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/api/health` | Health check & service heartbeat |
+| `GET` | `/api/menu` | List all royal feast packages and spice specifications |
+| `GET` | `/api/menu/:id` | Fetch specific feast package details by ID |
+| `POST` | `/api/orders` | Place a royal banquet order with items, spice heat, and delivery address |
+| `GET` | `/api/orders/:id` | Query order status and delivery tracking |
+| `POST` | `/api/reservations` | Reserve a royal dining table / banquet diwan |
+
+---
+
+## 🏗️ Production Builds
+
+To compile and verify all workspaces for production:
+
+```bash
+# Build both frontend and backend
+npm run build
+
+# Or build individually
+npm run build:frontend
+npm run build:backend
 ```
 
 ---

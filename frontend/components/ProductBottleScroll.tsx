@@ -25,6 +25,7 @@ export default function ProductBottleScroll({ onOpenOrderModal }: ProductBottleS
   const animFrameIdRef = useRef<number | null>(null);
   const lastRenderedFrameRef = useRef<number>(-1);
   const touchStartYRef = useRef<number>(0);
+  const isAutoPlayingRef = useRef<boolean>(false);
 
   // Preload frames with prioritized batching
   useEffect(() => {
@@ -152,10 +153,23 @@ export default function ProductBottleScroll({ onOpenOrderModal }: ProductBottleS
       if (!active) return;
 
       const diff = targetProgressRef.current - currentProgressRef.current;
-      if (Math.abs(diff) > 0.0001) {
-        currentProgressRef.current += diff * 0.14; // smooth fluid damping
+      if (Math.abs(diff) > 0.00008) {
+        if (isAutoPlayingRef.current) {
+          // Slow cinematic unveiling when clicking "Unveil Feast" (~32 fps so video frames are actively visible)
+          const step = Math.sign(diff) * Math.min(Math.abs(diff * 0.035), 0.0022);
+          currentProgressRef.current += step;
+          if (Math.abs(targetProgressRef.current - currentProgressRef.current) < 0.001) {
+            isAutoPlayingRef.current = false;
+          }
+        } else {
+          // Reverted back to exact previous speed & fluid damping for normal scrolling
+          currentProgressRef.current += diff * 0.14;
+        }
+
         setProgress(currentProgressRef.current);
         renderFrame(currentProgressRef.current);
+      } else {
+        isAutoPlayingRef.current = false;
       }
 
       animFrameIdRef.current = requestAnimationFrame(tick);
@@ -189,7 +203,12 @@ export default function ProductBottleScroll({ onOpenOrderModal }: ProductBottleS
       const scrollY = window.scrollY || window.pageYOffset;
       const isAtTop = scrollY <= 2;
       const current = targetProgressRef.current;
-      const delta = e.deltaY * 0.00065; // tuned scrubbing sensitivity
+
+      // Yield auto-unveil immediately upon manual scroll interaction
+      isAutoPlayingRef.current = false;
+
+      // Reverted back to exact previous normal wheel sensitivity
+      const delta = e.deltaY * 0.00065;
 
       if (isAtTop) {
         if (delta > 0 && current < 1) {
@@ -210,6 +229,7 @@ export default function ProductBottleScroll({ onOpenOrderModal }: ProductBottleS
     };
 
     const handleTouchStart = (e: TouchEvent) => {
+      isAutoPlayingRef.current = false;
       if (e.touches.length > 0) {
         touchStartYRef.current = e.touches[0].clientY;
       }
@@ -220,7 +240,9 @@ export default function ProductBottleScroll({ onOpenOrderModal }: ProductBottleS
       const isAtTop = scrollY <= 2;
       if (e.touches.length === 0) return;
 
+      isAutoPlayingRef.current = false;
       const touchY = e.touches[0].clientY;
+      // Reverted back to exact previous normal touch sensitivity
       const deltaY = (touchStartYRef.current - touchY) * 0.002;
       touchStartYRef.current = touchY;
       const current = targetProgressRef.current;
@@ -249,6 +271,7 @@ export default function ProductBottleScroll({ onOpenOrderModal }: ProductBottleS
   }, []);
 
   const handleTimelineSeek = (targetP: number) => {
+    isAutoPlayingRef.current = true;
     targetProgressRef.current = targetP;
   };
 
