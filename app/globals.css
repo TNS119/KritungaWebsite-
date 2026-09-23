@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cinzel: 'Cinzel', serif;
+  --font-outfit: 'Outfit', sans-serif;
+  --page-bg: #FDF8F2;
+  --page-text: #1C0D0F;
+  --card-bg: #FFFFFF;
+  --card-hover: #F7EFE6;
+  --border-gold: rgba(184, 123, 24, 0.25);
+  --gold-accent: #B87B18;
+  --crimson-accent: #9E1B28;
+}
+
+html.dark {
+  --page-bg: #0A0203;
+  --page-text: #FFF8EE;
+  --card-bg: #140507;
+  --card-hover: #1D080B;
+  --border-gold: rgba(229, 169, 60, 0.2);
+  --gold-accent: #E5A93C;
+  --crimson-accent: #8C1824;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--page-bg);
+  color: var(--page-text);
+  font-family: var(--font-outfit), sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-color: var(--page-bg);
+  color: var(--page-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: #8C1824;
+  color: #F3C973;
+}
+
+/* Custom luxury scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--page-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--crimson-accent);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-accent);
+}
+
+/* Glow & Glass Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(184, 123, 24, 0.25);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+html.dark .glass-panel {
+  background: rgba(20, 5, 7, 0.8);
+  border-color: rgba(229, 169, 60, 0.2);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.glass-panel-hover:hover {
+  background: rgba(247, 239, 230, 0.95);
+  border-color: rgba(184, 123, 24, 0.5);
+  box-shadow: 0 10px 30px -10px rgba(201, 42, 26, 0.15);
+}
+
+html.dark .glass-panel-hover:hover {
+  background: rgba(29, 8, 11, 0.92);
+  border-color: rgba(229, 169, 60, 0.45);
+  box-shadow: 0 10px 30px -10px rgba(214, 48, 29, 0.3);
+}
+
+.gold-glow {
+  text-shadow: 0 0 20px rgba(184, 123, 24, 0.3);
+}
+html.dark .gold-glow {
+  text-shadow: 0 0 20px rgba(243, 201, 115, 0.4);
+}
+
+.crimson-glow {
+  text-shadow: 0 0 25px rgba(201, 42, 26, 0.35);
+}
+html.dark .crimson-glow {
+  text-shadow: 0 0 25px rgba(214, 48, 29, 0.6);
+}
+
+.gold-border-glow {
+  box-shadow: 0 0 20px -5px rgba(184, 123, 24, 0.25);
+}
+html.dark .gold-border-glow {
+  box-shadow: 0 0 25px -5px rgba(229, 169, 60, 0.3);
+}
