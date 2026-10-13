@@ -15,12 +15,14 @@ export default function Footer() {
     }
   };
 
-  const OUTLETS = [
-    { city: 'Hyderabad', areas: 'Madhapur, Gachibowli, Kukatpally, Banjara Hills, AS Rao Nagar' },
-    { city: 'Bengaluru', areas: 'Koramangala, Marathahalli, HSR Layout, Whitefield, Indiranagar' },
-    { city: 'Chennai', areas: 'Anna Nagar, T. Nagar, OMR, Velachery' },
-    { city: 'Kurnool & Vijayawada', areas: 'Heritage Flagship Fort Road & MG Road' },
-  ];
+  const NALGONDA_OUTLET = {
+    name: 'Kritunga Restaurant — Nalgonda',
+    landmark: 'Chandanapalli, Hyderabad Road',
+    city: 'Nalgonda, Telangana 508001',
+    phone: '+91 91234 56789',
+    swiggyUrl: 'https://www.swiggy.com/city/nalgonda/kritunga-restaurant-chandanapalli-rest1223831?source=sharing',
+    zomatoUrl: 'https://www.zomato.com/nalgonda/kritunga-nalgonda-locality/order',
+  };
 
   return (
     <footer id="brand-footer" className="relative dark:bg-palegar-bg bg-palegar-lightBg dark:text-palegar-text text-palegar-lightText pt-20 pb-28 border-t dark:border-palegar-gold/20 border-palegar-lightGold/30 transition-colors duration-300 overflow-hidden">
@@ -84,21 +86,45 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 3: Royal Outlets */}
+          {/* Col 3: Royal Stronghold (Nalgonda) */}
           <div className="space-y-3">
             <h4 className="font-cinzel text-sm font-bold tracking-wider dark:text-palegar-gold text-palegar-lightGold uppercase">
-              Royal Strongholds
+              Royal Stronghold
             </h4>
-            <div className="space-y-3">
-              {OUTLETS.map((o) => (
-                <div key={o.city} className="text-xs">
-                  <span className="font-bold dark:text-palegar-text text-palegar-lightText flex items-center gap-1.5">
-                    <MapPin className="w-3 h-3 text-palegar-chilli shrink-0" />
-                    {o.city}
-                  </span>
-                  <span className="text-[11px] dark:text-palegar-muted text-palegar-lightMuted pl-4 block">{o.areas}</span>
+            <div className="space-y-2 text-xs">
+              <div className="font-bold dark:text-palegar-text text-palegar-lightText flex items-center gap-1.5">
+                <MapPin className="w-3.5 h-3.5 text-palegar-chilli shrink-0" />
+                <span>{NALGONDA_OUTLET.name}</span>
+              </div>
+              <p className="text-[11px] dark:text-palegar-muted text-palegar-lightMuted pl-5 leading-relaxed">
+                {NALGONDA_OUTLET.landmark},<br />
+                {NALGONDA_OUTLET.city}
+              </p>
+              <div className="pl-5 pt-1 space-y-1.5">
+                <p className="text-[11px] font-mono dark:text-palegar-gold text-palegar-lightGold font-semibold">
+                  Tel: {NALGONDA_OUTLET.phone}
+                </p>
+                <div className="flex items-center gap-3 pt-1">
+                  <a
+                    href={NALGONDA_OUTLET.swiggyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] uppercase font-bold text-[#FC8019] hover:underline flex items-center gap-1"
+                  >
+                    <span>Swiggy</span>
+                    <ArrowRight className="w-2.5 h-2.5" />
+                  </a>
+                  <a
+                    href={NALGONDA_OUTLET.zomatoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[10px] uppercase font-bold text-[#E23744] hover:underline flex items-center gap-1"
+                  >
+                    <span>Zomato</span>
+                    <ArrowRight className="w-2.5 h-2.5" />
+                  </a>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
 

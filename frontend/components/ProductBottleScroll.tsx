@@ -199,7 +199,30 @@ export default function ProductBottleScroll({ onOpenOrderModal }: ProductBottleS
     const container = containerRef.current;
     if (!container) return;
 
+    const isModalActive = (eventTarget?: EventTarget | null): boolean => {
+      if (typeof document === 'undefined') return false;
+      if (document.body.classList.contains('modal-open') || document.body.style.overflow === 'hidden') {
+        return true;
+      }
+      if (document.querySelector('[role="dialog"]') || document.querySelector('[data-modal="true"]')) {
+        return true;
+      }
+      if (eventTarget instanceof HTMLElement) {
+        if (
+          eventTarget.closest('[role="dialog"]') ||
+          eventTarget.closest('[data-modal="true"]') ||
+          eventTarget.closest('.fixed.inset-0')
+        ) {
+          return true;
+        }
+      }
+      return false;
+    };
+
     const handleWheel = (e: WheelEvent) => {
+      // Do not intercept or move background frames if user is scrolling inside/over any modal dialog
+      if (isModalActive(e.target)) return;
+
       const scrollY = window.scrollY || window.pageYOffset;
       const isAtTop = scrollY <= 2;
       const current = targetProgressRef.current;
@@ -229,6 +252,8 @@ export default function ProductBottleScroll({ onOpenOrderModal }: ProductBottleS
     };
 
     const handleTouchStart = (e: TouchEvent) => {
+      if (isModalActive(e.target)) return;
+
       isAutoPlayingRef.current = false;
       if (e.touches.length > 0) {
         touchStartYRef.current = e.touches[0].clientY;
@@ -236,6 +261,8 @@ export default function ProductBottleScroll({ onOpenOrderModal }: ProductBottleS
     };
 
     const handleTouchMove = (e: TouchEvent) => {
+      if (isModalActive(e.target)) return;
+
       const scrollY = window.scrollY || window.pageYOffset;
       const isAtTop = scrollY <= 2;
       if (e.touches.length === 0) return;

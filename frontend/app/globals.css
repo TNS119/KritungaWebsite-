@@ -52,19 +52,67 @@ body {
   color: #F3C973;
 }
 
-/* Custom luxury scrollbar */
+/* Sleek, unobtrusive modern scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
 ::-webkit-scrollbar-track {
-  background: var(--page-bg);
+  background: transparent;
+  margin: 8px 0;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--crimson-accent);
-  border-radius: 4px;
+  background: rgba(184, 123, 24, 0.3);
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gold-accent);
+  background: rgba(184, 123, 24, 0.6);
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(229, 169, 60, 0.3);
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(229, 169, 60, 0.6);
+}
+
+/* Modal Inset Scrollbar: Guaranteed to stay strictly inside rounded borders */
+.custom-modal-scroll {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.custom-modal-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-modal-scroll::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+.custom-modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 16px 0;
+}
+.custom-modal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(229, 169, 60, 0.35);
+  border-radius: 9999px;
+}
+.custom-modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(229, 169, 60, 0.7);
+}
+
+/* Firefox standard scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(229, 169, 60, 0.3) transparent;
 }
 
 /* Glow & Glass Utilities */

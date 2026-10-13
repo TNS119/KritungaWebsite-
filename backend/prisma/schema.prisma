@@ -1,0 +1,116 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Outlet {
+  id           String        @id @default(uuid())
+  name         String
+  city         String
+  address      String
+  phone        String
+  isActive     Boolean       @default(true)
+  orders       Order[]
+  reservations Reservation[]
+  conventionBookings ConventionBooking[]
+  createdAt    DateTime      @default(now())
+}
+
+model MenuItem {
+  id          String      @id @default(uuid())
+  slug        String      @unique
+  name        String
+  tag         String
+  description String
+  price       Float
+  originalPrice Float?
+  spiceLevel  Int         @default(3)
+  portion     String
+  subtitle    String?
+  isAvailable Boolean     @default(true)
+  orderItems  OrderItem[]
+  createdAt   DateTime    @default(now())
+}
+
+model Order {
+  id              String      @id @default(uuid())
+  orderNumber     String      @unique // e.g. KRIT-892415
+  outletId        String
+  outlet          Outlet      @relation(fields: [outletId], references: [id])
+  customerName    String
+  customerPhone   String
+  customerEmail   String?
+  deliveryAddress String
+  spicePreference String      @default("Authentic Palegar Fire (Signature)")
+  orderNotes      String?
+  status          String      @default("CONFIRMED") // CONFIRMED, PREPARING_DUM, OUT_FOR_DELIVERY, DELIVERED, CANCELLED
+  totalAmount     Float
+  deliveryFee     Float       @default(0)
+  paymentStatus   String      @default("PENDING") // PENDING, SUCCESS, FAILED
+  paymentMethod   String      @default("upi") // upi, card, cod
+  estimatedMinutes Int        @default(35)
+  whatsappNotified Boolean    @default(false)
+  items           OrderItem[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+}
+
+model OrderItem {
+  id         String   @id @default(uuid())
+  orderId    String
+  order      Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  menuItemId String?
+  menuItem   MenuItem? @relation(fields: [menuItemId], references: [id])
+  name       String
+  quantity   Int      @default(1)
+  unitPrice  Float
+  addons     String?  // JSON stringified accompaniments
+  createdAt  DateTime @default(now())
+}
+
+model Reservation {
+  id              String   @id @default(uuid())
+  bookingNumber   String   @unique // e.g. RES-4921
+  outletId        String
+  outlet          Outlet   @relation(fields: [outletId], references: [id])
+  guestName       String
+  guestPhone      String
+  guestEmail      String?
+  partySize       Int
+  reservationDate String   // ISO date string e.g. 2026-09-30
+  timeSlot        String   // e.g. "Lunch Banquet (1:00 PM)" or "Imperial Dinner (8:00 PM)"
+  tableType       String   @default("Regal Courtyard Table") // Regal Courtyard Table, Royal Palegar Banquet Diwan
+  specialRequests String?
+  status          String   @default("CONFIRMED") // CONFIRMED, SEATED, COMPLETED, CANCELLED
+  whatsappNotified Boolean @default(false)
+  createdAt       DateTime @default(now())
+}
+
+model ConventionBooking {
+  id                   String    @id @default(uuid())
+  bookingNumber        String    @unique // e.g. CNV-4821
+  outletId             String?
+  outlet               Outlet?   @relation(fields: [outletId], references: [id])
+  organizerName        String
+  organizerPhone       String
+  organizerEmail       String?
+  companyName          String?
+  eventType            String    // Wedding Reception, Corporate Gala, Engagement / Sangeet, etc.
+  hallPreference       String    // Grand Rayalaseema Palace Hall, Palegar Heritage Diwan, etc.
+  expectedGuests       Int
+  eventDate            String    // YYYY-MM-DD
+  timeSlot             String    // Full Day Grand Royal, Evening Gala Session, Morning & Lunch Session
+  cateringPreference   String    // Royal Palegar Multi-Course, Signature Pot Biryani, Custom Buffet
+  additionalServices   String?   // JSON string or comma-separated list
+  specialRequests      String?
+  status               String    @default("REQUEST_RECEIVED") // REQUEST_RECEIVED, UNDER_REVIEW, ADVANCE_PAID, CONFIRMED, CANCELLED
+  estimatedBudget      String?
+  whatsappNotified     Boolean   @default(false)
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+}
+

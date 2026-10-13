@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Flame, ShieldCheck, Clock, Award, Sparkles, Utensils, HeartHandshake, ChefHat } from 'lucide-react';
+import { Flame, ShieldCheck, Clock, Award, Droplets, Utensils, HeartHandshake, ChefHat } from 'lucide-react';
 import { INTENSITY_METRICS } from '@/data/products';
 
 export default function ProductDetails() {
@@ -16,13 +16,13 @@ export default function ProductDetails() {
         <div className="text-center max-w-3xl mx-auto mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full dark:bg-palegar-card bg-white border dark:border-palegar-gold/30 border-palegar-lightGold/40 dark:text-palegar-gold text-palegar-lightGold text-xs font-bold uppercase tracking-widest mb-4 shadow-sm">
             <ChefHat className="w-4 h-4 text-palegar-gold" />
-            <span>The Sacred Palegar Heritage</span>
+            <span>Authentic Royal Heritage</span>
           </div>
           <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-black tracking-tight dark:text-palegar-text text-palegar-lightText gold-glow mb-4">
-            Culinary Alchemy of the Warlords
+            Royal Recipes of the Palegars
           </h2>
           <p className="dark:text-palegar-muted text-palegar-lightMuted text-sm sm:text-base leading-relaxed">
-            Every grain of Kritunga Biryani and every ladle of slow-braised curry carries the uncompromising legacy of the 16th-century Palegar rulers of Rayalaseema.
+            Every pot of Kritunga Biryani and slow-cooked curry brings you the rich, fiery heritage of royal Rayalaseema traditions, handcrafted fresh every single day.
           </p>
         </div>
 
@@ -56,7 +56,7 @@ export default function ProductDetails() {
 
             <div className="glass-panel p-6 rounded-2xl border dark:border-palegar-gold/20 border-palegar-lightGold/30 glass-panel-hover shadow-lg">
               <div className="w-12 h-12 rounded-xl dark:bg-palegar-crimson/30 bg-palegar-lightCrimson/10 border dark:border-palegar-gold/30 border-palegar-lightGold/30 flex items-center justify-center mb-4 text-palegar-gold">
-                <Sparkles className="w-6 h-6 dark:text-palegar-gold text-palegar-lightGold" />
+                <Droplets className="w-6 h-6 dark:text-palegar-gold text-palegar-lightGold" />
               </div>
               <h3 className="font-cinzel text-lg font-bold dark:text-palegar-text text-palegar-lightText mb-2">
                 Pure A2 Desi Bilona Ghee
@@ -87,10 +87,10 @@ export default function ProductDetails() {
               <div className="flex items-center justify-between mb-6">
                 <div>
                   <span className="text-[11px] font-mono tracking-widest uppercase font-bold dark:text-palegar-gold text-palegar-lightGold">
-                    SENSORY CALIBRATION
+                    ROYAL TASTE STANDARDS
                   </span>
                   <h3 className="font-cinzel text-2xl font-bold dark:text-palegar-text text-palegar-lightText gold-glow">
-                    Palegar Intensity Matrix
+                    The Palegar Quality Promise
                   </h3>
                 </div>
                 <div className="px-3 py-1 rounded-full dark:bg-palegar-crimson/40 bg-palegar-lightCrimson/10 border dark:border-palegar-gold/40 border-palegar-lightGold/30 text-[11px] font-bold dark:text-palegar-goldLight text-palegar-lightCrimson flex items-center gap-1">
@@ -118,15 +118,19 @@ export default function ProductDetails() {
               </div>
             </div>
 
-            <div className="mt-8 pt-6 border-t dark:border-palegar-gold/20 border-palegar-lightGold/20 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Award className="w-8 h-8 dark:text-palegar-gold text-palegar-lightGold" />
-                <div>
-                  <p className="text-xs font-bold dark:text-palegar-text text-palegar-lightText uppercase">Certified Heritage Standard</p>
-                  <p className="text-[11px] dark:text-palegar-muted text-palegar-lightMuted">Maintained across all 45+ outlets since 1999</p>
+            <div className="mt-8 pt-6 border-t dark:border-palegar-gold/20 border-palegar-lightGold/20 flex flex-wrap sm:flex-nowrap items-center justify-between gap-4">
+              <div className="flex items-center gap-3 min-w-0">
+                <Award className="w-8 h-8 dark:text-palegar-gold text-palegar-lightGold shrink-0" />
+                <div className="min-w-0">
+                  <p className="text-xs font-bold dark:text-palegar-text text-palegar-lightText uppercase tracking-wide">
+                    Certified Heritage Standard
+                  </p>
+                  <p className="text-[11px] dark:text-palegar-muted text-palegar-lightMuted">
+                    Maintained at Nalgonda 
+                  </p>
                 </div>
               </div>
-              <span className="font-mono text-xs font-bold dark:text-palegar-goldLight text-palegar-lightGold dark:bg-palegar-card bg-palegar-lightCardHover px-3 py-1.5 rounded-lg border dark:border-palegar-gold/30 border-palegar-lightGold/40 shadow-sm">
+              <span className="font-mono text-xs font-bold dark:text-palegar-goldLight text-palegar-lightGold dark:bg-palegar-card bg-palegar-lightCardHover px-3 py-1.5 rounded-lg border dark:border-palegar-gold/30 border-palegar-lightGold/40 shadow-sm shrink-0 whitespace-nowrap">
                 GRADE A+
               </span>
             </div>

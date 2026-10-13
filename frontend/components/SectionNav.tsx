@@ -1,14 +1,16 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Crown, Sparkles, Utensils, ShoppingBag, MapPin } from 'lucide-react';
+import { Crown, Utensils, ShoppingBag, MapPin, Building2 } from 'lucide-react';
+import SpiceIcon from './SpiceIcon';
 
 const SECTIONS = [
-  { id: 'hero-experience', label: 'Veil', icon: Crown },
-  { id: 'palegar-anatomy', label: 'Secrets', icon: Utensils },
-  { id: 'sensory-crucible', label: 'Physics', icon: Sparkles },
-  { id: 'royal-packs', label: 'Feast Box', icon: ShoppingBag },
-  { id: 'brand-footer', label: 'Outlets', icon: MapPin },
+  { id: 'hero-experience', label: 'Story', icon: Crown },
+  { id: 'palegar-anatomy', label: 'Heritage', icon: Utensils },
+  { id: 'sensory-crucible', label: 'Flavors', icon: SpiceIcon },
+  { id: 'royal-packs', label: 'Feasts', icon: ShoppingBag },
+  { id: 'conventions', label: 'Banquets', icon: Building2 },
+  { id: 'brand-footer', label: 'Nalgonda', icon: MapPin },
 ];
 
 export default function SectionNav() {

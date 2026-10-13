@@ -1,14 +1,16 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Flame, UtensilsCrossed, PhoneCall, Sparkles, Menu, X, ShoppingBag, Sun, Moon } from 'lucide-react';
+import { Flame, UtensilsCrossed, PhoneCall, Menu, X, ShoppingBag, Sun, Moon, Crown } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 
 interface NavbarProps {
   onOpenOrderModal: () => void;
+  onOpenConventionModal?: () => void;
+  onOpenReservationModal?: () => void;
 }
 
-export default function Navbar({ onOpenOrderModal }: NavbarProps) {
+export default function Navbar({ onOpenOrderModal, onOpenConventionModal, onOpenReservationModal }: NavbarProps) {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -72,7 +74,7 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
         </button>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden lg:flex items-center mx-6 xl:mx-10 gap-6 xl:gap-8 text-xs sm:text-sm font-medium tracking-wide">
+        <nav className="hidden lg:flex items-center mx-4 xl:mx-8 gap-5 xl:gap-7 text-xs sm:text-sm font-medium tracking-wide">
           <button
             onClick={() => scrollTo('hero-experience')}
             className={`${
@@ -81,7 +83,7 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
                 : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
             } transition-colors inline-flex items-center gap-1.5 whitespace-nowrap group`}
           >
-            <span>Royal Veil</span>
+            <span>Our Story</span>
           </button>
           <button
             onClick={() => scrollTo('palegar-anatomy')}
@@ -91,7 +93,7 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
                 : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
             } transition-colors inline-flex items-center gap-1.5 whitespace-nowrap group`}
           >
-            <span>Culinary Secrets</span>
+            <span>Heritage</span>
           </button>
           <button
             onClick={() => scrollTo('sensory-crucible')}
@@ -101,7 +103,7 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
                 : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
             } transition-colors whitespace-nowrap`}
           >
-            Sensory Physics
+            Our Flavors
           </button>
           <button
             onClick={() => scrollTo('royal-packs')}
@@ -111,7 +113,17 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
                 : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
             } transition-colors whitespace-nowrap`}
           >
-            Palegar Feast Box
+            Signature Feasts
+          </button>
+          <button
+            onClick={() => scrollTo('conventions')}
+            className={`${
+              scrolled
+                ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
+                : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
+            } transition-colors whitespace-nowrap font-semibold dark:text-palegar-gold text-palegar-lightGold`}
+          >
+            Banquet Halls
           </button>
           <button
             onClick={() => scrollTo('brand-footer')}
@@ -121,12 +133,12 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
                 : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
             } transition-colors whitespace-nowrap`}
           >
-            Royal Outlets
+            Contact Us
           </button>
         </nav>
 
         {/* Action CTAs & Theme Toggle */}
-        <div className="hidden sm:flex items-center gap-3 shrink-0">
+        <div className="hidden sm:flex items-center gap-2.5 shrink-0">
           {/* Luxury Sun / Moon Theme Toggle */}
           <button
             onClick={toggleTheme}
@@ -146,25 +158,42 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
             )}
           </button>
 
-          <a
-            href="tel:+918049652255"
-            className={`px-4 py-2 rounded-full border ${
+          {/* Convention Hall Booking CTA */}
+          <button
+            onClick={onOpenConventionModal || (() => scrollTo('conventions'))}
+            className={`px-3.5 py-2 rounded-full border ${
               scrolled
                 ? 'dark:border-palegar-gold/40 border-palegar-lightGold/50 dark:text-palegar-gold text-palegar-lightGold dark:hover:bg-palegar-gold/15 hover:bg-palegar-lightGold/10'
                 : 'border-palegar-gold/60 text-palegar-goldLight hover:bg-palegar-gold/20 bg-black/30 backdrop-blur-sm'
-            } text-xs font-semibold tracking-wider uppercase transition-all flex items-center gap-2 whitespace-nowrap shadow-sm`}
+            } text-xs font-semibold tracking-wider uppercase transition-all flex items-center gap-1.5 whitespace-nowrap shadow-sm`}
+            id="nav-convention-btn"
+          >
+            <Crown className="w-3.5 h-3.5 text-palegar-gold shrink-0" />
+            <span>Convention</span>
+          </button>
+
+          {/* Table Booking CTA */}
+          <button
+            onClick={onOpenReservationModal}
+            className={`px-3.5 py-2 rounded-full border ${
+              scrolled
+                ? 'dark:border-palegar-gold/40 border-palegar-lightGold/50 dark:text-palegar-gold text-palegar-lightGold dark:hover:bg-palegar-gold/15 hover:bg-palegar-lightGold/10'
+                : 'border-palegar-gold/60 text-palegar-goldLight hover:bg-palegar-gold/20 bg-black/30 backdrop-blur-sm'
+            } text-xs font-semibold tracking-wider uppercase transition-all flex items-center gap-1.5 whitespace-nowrap shadow-sm`}
             id="nav-call-btn"
           >
             <PhoneCall className="w-3.5 h-3.5 text-palegar-gold shrink-0" />
-            <span>Table Booking</span>
-          </a>
+            <span>Table</span>
+          </button>
+
+          {/* Order CTA (Opens Swiggy/Zomato partner navigation) */}
           <button
             onClick={onOpenOrderModal}
-            className="px-5 py-2.5 rounded-full bg-gradient-to-r from-palegar-chilli via-palegar-crimson to-palegar-chilli text-palegar-text font-bold text-xs tracking-wider uppercase shadow-lg shadow-palegar-chilli/40 hover:shadow-palegar-chilli/70 hover:scale-105 active:scale-95 transition-all duration-300 border border-palegar-gold/50 flex items-center gap-2 whitespace-nowrap"
+            className="px-4 py-2 rounded-full bg-gradient-to-r from-palegar-chilli via-palegar-crimson to-palegar-chilli text-palegar-text font-bold text-xs tracking-wider uppercase shadow-lg shadow-palegar-chilli/40 hover:shadow-palegar-chilli/70 hover:scale-105 active:scale-95 transition-all duration-300 border border-palegar-gold/50 flex items-center gap-1.5 whitespace-nowrap"
             id="nav-order-btn"
           >
             <ShoppingBag className="w-3.5 h-3.5 text-palegar-goldLight shrink-0" />
-            <span>Order</span>
+            <span>Order Now</span>
           </button>
         </div>
 
@@ -172,14 +201,27 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
         <div className="flex sm:hidden items-center gap-2">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full border dark:border-palegar-gold/40 border-palegar-lightGold/50 dark:bg-palegar-card/80 bg-white text-palegar-gold"
-            aria-label="Toggle theme"
+            className={`relative p-2.5 rounded-full border ${
+              scrolled
+                ? 'dark:border-palegar-gold/40 border-palegar-lightGold/50 dark:bg-palegar-card/80 bg-white shadow-sm'
+                : 'border-palegar-gold/60 bg-black/40 backdrop-blur-md'
+            } active:scale-95 transition-all duration-300 flex items-center justify-center`}
+            aria-label="Toggle Dark and Light theme"
+            title={`Switch to ${theme === 'dark' ? 'Light Palace' : 'Dark Obsidian'} theme`}
           >
-            {theme === 'dark' ? <Sun className="w-4 h-4 text-palegar-gold" /> : <Moon className="w-4 h-4 text-palegar-lightGold" />}
+            {theme === 'dark' ? (
+              <Sun className="w-4 h-4 text-palegar-gold animate-spin-slow" />
+            ) : (
+              <Moon className={`w-4 h-4 ${scrolled ? 'text-palegar-lightGold' : 'text-palegar-goldLight'}`} />
+            )}
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 dark:text-palegar-gold text-palegar-lightGold hover:text-palegar-gold focus:outline-none"
+            className={`p-2 transition-colors ${
+              scrolled
+                ? 'dark:text-palegar-gold text-palegar-lightGold'
+                : 'text-palegar-text drop-shadow'
+            } hover:text-palegar-gold focus:outline-none`}
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -194,31 +236,37 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
             onClick={() => scrollTo('hero-experience')}
             className="text-left text-base font-medium dark:text-palegar-text text-palegar-lightText hover:text-palegar-gold py-2 border-b dark:border-palegar-gold/10 border-palegar-lightGold/15"
           >
-            Royal Veil Experience
+            Our Story & Heritage
           </button>
           <button
             onClick={() => scrollTo('palegar-anatomy')}
             className="text-left text-base font-medium dark:text-palegar-text text-palegar-lightText hover:text-palegar-gold py-2 border-b dark:border-palegar-gold/10 border-palegar-lightGold/15"
           >
-            Palegar Culinary Anatomy
+            Cooking Traditions
           </button>
           <button
             onClick={() => scrollTo('sensory-crucible')}
             className="text-left text-base font-medium dark:text-palegar-text text-palegar-lightText hover:text-palegar-gold py-2 border-b dark:border-palegar-gold/10 border-palegar-lightGold/15"
           >
-            Sensory Physics
+            Our Flavors & Spices
           </button>
           <button
             onClick={() => scrollTo('royal-packs')}
             className="text-left text-base font-medium dark:text-palegar-text text-palegar-lightText hover:text-palegar-gold py-2 border-b dark:border-palegar-gold/10 border-palegar-lightGold/15"
           >
-            Signature Feast Packs
+            Signature Feasts
+          </button>
+          <button
+            onClick={() => scrollTo('conventions')}
+            className="text-left text-base font-medium dark:text-palegar-gold text-palegar-lightGold hover:text-palegar-gold py-2 border-b dark:border-palegar-gold/10 border-palegar-lightGold/15 font-semibold"
+          >
+            Palace Convention & Banquet Halls
           </button>
           <button
             onClick={() => scrollTo('brand-footer')}
             className="text-left text-base font-medium dark:text-palegar-text text-palegar-lightText hover:text-palegar-gold py-2 border-b dark:border-palegar-gold/10 border-palegar-lightGold/15"
           >
-            Royal Outlets & Story
+            Contact Us
           </button>
 
           <div className="pt-2 flex flex-col gap-3">
@@ -230,14 +278,32 @@ export default function Navbar({ onOpenOrderModal }: NavbarProps) {
               className="w-full py-3 rounded-full bg-gradient-to-r from-palegar-chilli to-palegar-crimson text-palegar-text font-bold text-center tracking-wider uppercase border border-palegar-gold/40 flex items-center justify-center gap-2"
             >
               <ShoppingBag className="w-4 h-4 text-palegar-gold" />
-              Order Royal Feast
+              Order Now
             </button>
-            <a
-              href="tel:+918049652255"
-              className="w-full py-2.5 rounded-full border dark:border-palegar-gold/30 border-palegar-lightGold/40 dark:text-palegar-gold text-palegar-lightGold text-center text-xs font-semibold tracking-wider uppercase"
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (onOpenConventionModal) {
+                  onOpenConventionModal();
+                } else {
+                  scrollTo('conventions');
+                }
+              }}
+              className="w-full py-2.5 rounded-full border dark:border-palegar-gold/40 border-palegar-lightGold/50 dark:text-palegar-gold text-palegar-lightGold text-center text-xs font-semibold tracking-wider uppercase hover:bg-palegar-gold/10 transition-colors flex items-center justify-center gap-1.5"
             >
-              Reserve A Table
-            </a>
+              <Crown className="w-4 h-4 text-palegar-gold" />
+              Book Convention Hall
+            </button>
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenReservationModal?.();
+              }}
+              className="w-full py-2.5 rounded-full border dark:border-palegar-gold/30 border-palegar-lightGold/40 dark:text-palegar-gold text-palegar-lightGold text-center text-xs font-semibold tracking-wider uppercase hover:bg-palegar-gold/10 transition-colors flex items-center justify-center gap-1.5"
+            >
+              <PhoneCall className="w-4 h-4 text-palegar-gold" />
+              Reserve Dining Table
+            </button>
           </div>
         </div>
       )}

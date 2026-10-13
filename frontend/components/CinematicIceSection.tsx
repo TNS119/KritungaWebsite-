@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Sparkles, Flame, Droplets, Zap, ChevronRight, X, ShieldAlert, CheckCircle2 } from 'lucide-react';
+import { Flame, Droplets, Zap, ChevronRight, X, ShieldAlert, CheckCircle2 } from 'lucide-react';
+import SpiceIcon from './SpiceIcon';
 import { SENSORY_PHYSICS } from '@/data/products';
 
 export default function CinematicIceSection() {
@@ -9,16 +10,16 @@ export default function CinematicIceSection() {
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
-      case 'Sparkles':
-        return <Sparkles className="w-6 h-6 text-palegar-gold" />;
+      case 'Spice':
+        return <SpiceIcon className="w-5 h-5 text-palegar-gold" />;
       case 'Flame':
-        return <Flame className="w-6 h-6 text-palegar-chilli" />;
+        return <Flame className="w-5 h-5 text-palegar-chilli" />;
       case 'Droplets':
-        return <Droplets className="w-6 h-6 text-yellow-400" />;
+        return <Droplets className="w-5 h-5 text-amber-400" />;
       case 'Zap':
-        return <Zap className="w-6 h-6 text-rose-500" />;
+        return <Zap className="w-5 h-5 text-rose-500" />;
       default:
-        return <Sparkles className="w-6 h-6 text-palegar-gold" />;
+        return <SpiceIcon className="w-5 h-5 text-palegar-gold" />;
     }
   };
 
@@ -33,23 +34,23 @@ export default function CinematicIceSection() {
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full dark:bg-palegar-card bg-white border dark:border-palegar-gold/30 border-palegar-lightGold/40 dark:text-palegar-gold text-palegar-lightGold text-xs font-bold uppercase tracking-widest mb-4 shadow-sm">
-            <Sparkles className="w-4 h-4 text-palegar-gold" />
-            <span>The Sensory Crucible</span>
+            <SpiceIcon className="w-4 h-4 text-palegar-gold" />
+            <span>Rayalaseema Spice Alchemy</span>
           </div>
           <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-black tracking-tight dark:text-palegar-text text-palegar-lightText gold-glow mb-4">
-            The Physics of Rayalaseema Flavor
+            The Secret of Rayalaseema Flavors
           </h2>
           <p className="dark:text-palegar-muted text-palegar-lightMuted text-sm sm:text-base leading-relaxed">
-            Discover the thermodynamic precision and molecular spice synergy that elevates Kritunga from a meal into an unforgettable sensory encounter.
+            Ancestral cooking crafts, slow earthen dum, and pure country spices behind every royal Kritunga feast.
           </p>
         </div>
 
-        {/* 4 Interactive Sensory Cards Grid */}
+        {/* 4 Interactive Sensory Cards Grid with High-Res Culinary Photos & Crisp Text */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {SENSORY_PHYSICS.map((item, index) => (
             <div
               key={item.title}
-              className={`group glass-panel rounded-2xl p-6 border dark:border-palegar-gold/20 border-palegar-lightGold/30 relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl dark:hover:border-palegar-gold/50 hover:border-palegar-lightGold/70 flex flex-col justify-between`}
+              className={`group glass-panel rounded-2xl p-4 sm:p-5 border dark:border-palegar-gold/20 border-palegar-lightGold/30 relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl dark:hover:border-palegar-gold/50 hover:border-palegar-lightGold/70 flex flex-col justify-between`}
             >
               {/* Radial gradient hover accent */}
               <div
@@ -57,38 +58,52 @@ export default function CinematicIceSection() {
               />
 
               <div className="relative z-10">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/30 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                {/* Culinary Dish / Tradition Photography */}
+                <div className="relative w-full h-44 rounded-xl overflow-hidden mb-4 border dark:border-palegar-gold/20 border-palegar-lightGold/30 shadow-md">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                  
+                  {/* Floating Icon Badge */}
+                  <div className="absolute top-2.5 left-2.5 w-8 h-8 rounded-lg bg-black/60 backdrop-blur-md border border-palegar-gold/40 flex items-center justify-center shadow">
                     {getIcon(item.icon)}
                   </div>
-                  <span className="text-[10px] font-mono tracking-widest uppercase font-bold dark:text-palegar-gold/80 text-palegar-lightGold px-2.5 py-0.5 rounded-full dark:bg-palegar-card bg-white border dark:border-palegar-gold/20 border-palegar-lightGold/30 shadow-sm">
+                  
+                  {/* Tagline */}
+                  <span className="absolute top-2.5 right-2.5 text-[9px] font-mono tracking-widest uppercase font-bold text-palegar-goldLight px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md border border-palegar-gold/30">
                     {item.tagline}
                   </span>
+
+                  {/* Stat Over Image */}
+                  <div className="absolute bottom-2 left-2.5 right-2.5 flex items-baseline justify-between">
+                    <div>
+                      <span className="text-xl font-black font-mono text-white drop-shadow">
+                        {item.metric}
+                      </span>
+                      <span className="text-[10px] text-zinc-300 block font-medium leading-none">
+                        {item.metricUnit}
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="mb-3">
-                  <span className="text-2xl sm:text-3xl font-black font-mono dark:text-palegar-text text-palegar-lightText group-hover:text-palegar-goldLight transition-colors">
-                    {item.metric}
-                  </span>
-                  <span className="text-xs dark:text-palegar-muted text-palegar-lightMuted block font-medium">
-                    {item.metricUnit}
-                  </span>
-                </div>
-
-                <h3 className="font-cinzel text-lg font-bold dark:text-palegar-text text-palegar-lightText mb-2 group-hover:text-palegar-gold transition-colors">
+                <h3 className="font-cinzel text-base font-bold dark:text-palegar-text text-palegar-lightText mb-1 group-hover:text-palegar-gold transition-colors">
                   {item.title}
                 </h3>
 
-                <p className="text-xs dark:text-palegar-muted text-palegar-lightMuted leading-relaxed mb-6">
-                  {item.description}
+                <p className="text-xs dark:text-palegar-muted text-palegar-lightMuted leading-relaxed mb-4">
+                  {item.shortNote}
                 </p>
               </div>
 
               <button
                 onClick={() => setActiveModal(index)}
-                className="relative z-10 w-full py-2.5 px-4 rounded-xl dark:bg-palegar-card/80 bg-palegar-lightCardHover hover:bg-palegar-gold/20 dark:hover:bg-palegar-gold/20 border dark:border-palegar-gold/30 border-palegar-lightGold/40 text-xs font-bold dark:text-palegar-gold text-palegar-lightGold tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-1.5 group/btn shadow-sm"
+                className="relative z-10 w-full py-2 px-3 rounded-xl dark:bg-palegar-card/80 bg-palegar-lightCardHover hover:bg-palegar-gold/20 dark:hover:bg-palegar-gold/20 border dark:border-palegar-gold/30 border-palegar-lightGold/40 text-[11px] font-bold dark:text-palegar-gold text-palegar-lightGold tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-1.5 group/btn shadow-sm"
               >
-                <span>Explore Science</span>
+                <span>View Tradition</span>
                 <ChevronRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -121,18 +136,21 @@ export default function CinematicIceSection() {
               </div>
             </div>
 
-            <div className="p-4 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/20 border-palegar-lightGold/30 mb-6 flex items-center justify-between shadow-sm">
-              <div>
-                <span className="text-3xl font-black font-mono dark:text-palegar-gold text-palegar-lightGold">
+            <div className="relative w-full h-48 rounded-xl overflow-hidden mb-4 border dark:border-palegar-gold/30 border-palegar-lightGold/40 shadow-lg">
+              <img
+                src={SENSORY_PHYSICS[activeModal].image}
+                alt={SENSORY_PHYSICS[activeModal].title}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+              <div className="absolute bottom-3 left-3">
+                <span className="text-2xl font-black font-mono text-white drop-shadow">
                   {SENSORY_PHYSICS[activeModal].metric}
                 </span>
-                <span className="text-xs dark:text-palegar-muted text-palegar-lightMuted ml-2">
+                <span className="text-xs text-zinc-300 ml-2 font-medium">
                   {SENSORY_PHYSICS[activeModal].metricUnit}
                 </span>
               </div>
-              <span className="text-[11px] font-bold dark:text-palegar-chilli text-palegar-lightChilli uppercase dark:bg-palegar-crimson/30 bg-palegar-lightCrimson/10 px-3 py-1 rounded-full border dark:border-palegar-chilli/30 border-palegar-lightChilli/30">
-                Palegar Standard
-              </span>
             </div>
 
             <p className="text-sm dark:text-palegar-text/90 text-palegar-lightText/90 leading-relaxed mb-6">
@@ -158,7 +176,7 @@ export default function CinematicIceSection() {
               onClick={() => setActiveModal(null)}
               className="w-full py-3 rounded-full bg-gradient-to-r from-palegar-chilli to-palegar-crimson text-palegar-text font-bold text-xs uppercase tracking-wider border border-palegar-gold/40 shadow-lg shadow-palegar-chilli/30 hover:scale-[1.02] active:scale-[0.98] transition-transform"
             >
-              Return to Sensory Crucible
+              Back to Heritage Flavors
             </button>
           </div>
         </div>

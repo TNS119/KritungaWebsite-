@@ -7,6 +7,7 @@ export interface ProductPack {
   originalPrice: number;
   portion: string;
   spiceLevel: number; // 1 - 5
+  image: string;
   description: string;
   highlights: string[];
   badges: string[];
@@ -77,6 +78,7 @@ export const PRODUCT_PACKS: ProductPack[] = [
     originalPrice: 549,
     portion: "Serves 1-2 (750g)",
     spiceLevel: 4,
+    image: "/images/dishes/palegar-dum-biryani.jpg",
     description: "Cooked in traditional clay pots sealed with dough over slow-burning embers. Aged long-grain basmati infused with tender meat and Kritunga's secret 21-spice blend.",
     highlights: [
       "Aged Royal Basmati Rice",
@@ -101,6 +103,7 @@ export const PRODUCT_PACKS: ProductPack[] = [
     originalPrice: 629,
     portion: "Serves 1-2 (850g)",
     spiceLevel: 5,
+    image: "/images/dishes/natu-kodi-mudda.jpg",
     description: "Free-range country chicken cooked in a volcanic Guntur red chilli and shallot gravy, served with authentic hand-rolled steaming hot Ragi Sangati.",
     highlights: [
       "Free-Range Country Chicken (Natu Kodi)",
@@ -125,6 +128,7 @@ export const PRODUCT_PACKS: ProductPack[] = [
     originalPrice: 719,
     portion: "Serves 1-2 (800g)",
     spiceLevel: 4,
+    image: "/images/dishes/gongura-mutton-pot.jpg",
     description: "Tender bone-in prime lamb morsels braised with freshly harvested tart Gongura leaves, crushed peppercorns, and served with aromatic Palegar Jeera Rice.",
     highlights: [
       "Prime Grass-Fed Tender Lamb Chops",
@@ -149,6 +153,7 @@ export const PRODUCT_PACKS: ProductPack[] = [
     originalPrice: 1899,
     portion: "Serves 4-5 (2.8kg)",
     spiceLevel: 4,
+    image: "/images/dishes/royal-palegar-banquet.jpg",
     description: "The ultimate royal gathering box: 1x Palegar Mutton Biryani, 1x Natu Kodi Fry, 1x Gongura Paneer Tikka, 4x Butter Naan, Raitha, Mirchi Salan, and Royal Double Ka Meetha.",
     highlights: [
       "Full Spread of Signature Meats & Breads",
@@ -168,51 +173,59 @@ export const PRODUCT_PACKS: ProductPack[] = [
 
 export const SENSORY_PHYSICS = [
   {
-    title: "The 21-Spice Secret Potli",
-    tagline: "Ancestral Formula",
-    icon: "Sparkles",
+    title: "21-Spice Secret Potli",
+    tagline: "Hand-Blended Heritage",
+    icon: "Spice",
     metric: "21",
-    metricUnit: "Secret Botanicals",
-    description: "Stone-ground Stone Flower (Kalpasi), Star Anise, Marathi Moggu, and roasted Guntur Podi tied in muslin and infused slowly into the grain.",
+    metricUnit: "Secret Whole Spices",
+    shortNote: "Stone-ground royal spices infused in muslin.",
+    description: "Stone-ground Black Stone Flower, Star Anise, Marathi Moggu, and roasted Guntur spices hand-tied in muslin and slow-cooked to infuse rich aroma into every grain.",
+    image: "/images/traditions/spice-secret-potli.jpg",
     gradient: "from-amber-600/30 to-red-900/30",
     borderGlow: "group-hover:border-palegar-gold/60"
   },
   {
-    title: "Earthen Clay Pot Dum",
-    tagline: "Thermal Inertia Physics",
+    title: "Slow Clay Pot Dum",
+    tagline: "Ancestral Earthen Cooking",
     icon: "Flame",
-    metric: "180°C",
-    metricUnit: "Uniform Radiant Heat",
-    description: "Porous baked red clay handis create a micro-convection cyclone that traps moisture, ensuring every grain of basmati remains long, distinct, and tender.",
+    metric: "100%",
+    metricUnit: "Earthen Clay Handi",
+    shortNote: "Sealed over wood embers for tender aroma.",
+    description: "Natural unglazed red clay pots gently seal in steam over slow wood embers, ensuring basmati rice stays fragrant, tender, and bursting with rich juices.",
+    image: "/images/traditions/clay-pot-dum.jpg",
     gradient: "from-red-600/30 to-orange-900/30",
     borderGlow: "group-hover:border-palegar-chilli/60"
   },
   {
     title: "Pure Golden Desi Ghee",
-    tagline: "Velvety Mouthfeel",
+    tagline: "Rich & Aromatic Taste",
     icon: "Droplets",
-    metric: "99.8%",
-    metricUnit: "Pure Clarified Butter",
-    description: "Slow-churned bilona ghee drizzled generously over steaming dum layers, unlocking fat-soluble aromatics that explode on your palate.",
+    metric: "100%",
+    metricUnit: "Pure Bilona Cow Ghee",
+    shortNote: "Aromatic clarified butter with saffron notes.",
+    description: "Traditional golden cow ghee drizzled generously over hot biryani layers, delivering an irresistible royal aroma and unmatched richness in every bite.",
+    image: "/images/traditions/golden-desi-ghee.jpg",
     gradient: "from-yellow-500/30 to-amber-900/30",
     borderGlow: "group-hover:border-yellow-400/60"
   },
   {
-    title: "Guntur Fiery Heat Wave",
-    tagline: "The Rayalaseema Kick",
+    title: "Authentic Guntur Spice",
+    tagline: "The Rayalaseema Heat",
     icon: "Zap",
-    metric: "85,000",
-    metricUnit: "Scoville Heat Units",
-    description: "Sun-dried red chillies with intense capsaicin heat, balanced perfectly by caramelised onions, sour curd, and cooling royal spices.",
+    metric: "Hot",
+    metricUnit: "Authentic Fiery Flavor",
+    shortNote: "Sun-ripened chillies for signature royal heat.",
+    description: "Sun-ripened Guntur red chillies bring authentic Rayalaseema spice, harmoniously balanced by slow-caramelized onions, fresh herbs, and soothing curd.",
+    image: "/images/traditions/guntur-red-spice.jpg",
     gradient: "from-rose-600/30 to-red-950/30",
     borderGlow: "group-hover:border-rose-500/60"
   }
 ];
 
 export const INTENSITY_METRICS = [
-  { label: "Spiciness & Chilli Punch", score: 96, desc: "Guntur Sannam & Bedgi fire" },
-  { label: "Aroma & Dum Dispersion", score: 99, desc: "Saffron, Cardamom & Clove steam" },
-  { label: "Meat Tenderness & Succulence", score: 98, desc: "12-hour spiced curd marinade" },
-  { label: "Grain Fluffiness & Separation", score: 95, desc: "2-year aged Extra Long Basmati" },
-  { label: "Heritage Authenticity", score: 100, desc: "Centuries-old Palegar warlord recipes" },
+  { label: "Signature Chilli Heat", score: 96, desc: "Authentic Guntur & Byadgi chillies" },
+  { label: "Fragrant Dum Aroma", score: 99, desc: "Saffron, Cardamom & Clove steam" },
+  { label: "Melt-In-Mouth Meat", score: 98, desc: "Slow-cured 12-hour spiced marinade" },
+  { label: "Long-Grain Fluffy Rice", score: 95, desc: "Premium 2-year aged Basmati" },
+  { label: "Royal Taste Authenticity", score: 100, desc: "Centuries-old Palegar royal recipes" },
 ];

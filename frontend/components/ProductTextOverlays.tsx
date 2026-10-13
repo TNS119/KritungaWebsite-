@@ -32,7 +32,7 @@ export default function ProductTextOverlays({
 
       {/* 1. Bottom Action Buttons Bar (Dissolves upon scroll start) */}
       <div
-        className="w-full flex items-center justify-between gap-3 sm:gap-4 pb-8 sm:pb-2 transition-all duration-75"
+        className="w-full flex items-center justify-between gap-3 sm:gap-4 pb-16 sm:pb-2 transition-all duration-75"
         style={{
           opacity: buttonsOpacity,
           transform: `translateY(${progress * 20}px)`,
