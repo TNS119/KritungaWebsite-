@@ -5,7 +5,7 @@ import { Crown, Utensils, ShoppingBag, MapPin, Building2 } from 'lucide-react';
 import SpiceIcon from './SpiceIcon';
 
 const SECTIONS = [
-  { id: 'hero-experience', label: 'Story', icon: Crown },
+  { id: 'hero-experience', label: 'Home', icon: Crown },
   { id: 'palegar-anatomy', label: 'Heritage', icon: Utensils },
   { id: 'sensory-crucible', label: 'Flavors', icon: SpiceIcon },
   { id: 'royal-packs', label: 'Feasts', icon: ShoppingBag },

@@ -13,18 +13,51 @@ interface NavbarProps {
 export default function Navbar({ onOpenOrderModal, onOpenConventionModal, onOpenReservationModal }: NavbarProps) {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('hero-experience');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const NAV_ITEMS = [
+    { id: 'hero-experience', label: 'Home' },
+    { id: 'palegar-anatomy', label: 'Heritage' },
+    { id: 'sensory-crucible', label: 'Our Flavors' },
+    { id: 'royal-packs', label: 'Signature Feasts' },
+    { id: 'conventions', label: 'Banquet Halls' },
+    { id: 'brand-footer', label: 'Contact Us' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      const scrollY = window.scrollY || window.pageYOffset;
+      setScrolled(scrollY > 40);
+
+      // If at top of the page, always lock active section to Home
+      if (scrollY < 200) {
+        setActiveSection('hero-experience');
+        return;
+      }
+
+      const scrollPosition = scrollY + window.innerHeight / 3;
+
+      for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
+        const section = document.getElementById(NAV_ITEMS[i].id);
+        if (section) {
+          const top = section.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveSection(NAV_ITEMS[i].id);
+            break;
+          }
+        }
+      }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollTo = (id: string) => {
     setMobileMenuOpen(false);
+    setActiveSection(id);
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -72,60 +105,24 @@ export default function Navbar({ onOpenOrderModal, onOpenConventionModal, onOpen
 
         {/* Desktop Nav Links */}
         <nav className="hidden lg:flex items-center ml-auto mr-6 xl:mr-8 gap-5 xl:gap-7 text-xs sm:text-sm font-medium tracking-wide">
-          <button
-            onClick={() => scrollTo('hero-experience')}
-            className={`${scrolled
-                ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
-                : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
-              } transition-colors inline-flex items-center gap-1.5 whitespace-nowrap group`}
-          >
-            <span>Our Story</span>
-          </button>
-          <button
-            onClick={() => scrollTo('palegar-anatomy')}
-            className={`${scrolled
-                ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
-                : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
-              } transition-colors inline-flex items-center gap-1.5 whitespace-nowrap group`}
-          >
-            <span>Heritage</span>
-          </button>
-          <button
-            onClick={() => scrollTo('sensory-crucible')}
-            className={`${scrolled
-                ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
-                : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
-              } transition-colors whitespace-nowrap`}
-          >
-            Our Flavors
-          </button>
-          <button
-            onClick={() => scrollTo('royal-packs')}
-            className={`${scrolled
-                ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
-                : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
-              } transition-colors whitespace-nowrap`}
-          >
-            Signature Feasts
-          </button>
-          <button
-            onClick={() => scrollTo('conventions')}
-            className={`${scrolled
-                ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
-                : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
-              } transition-colors whitespace-nowrap font-semibold dark:text-palegar-gold text-palegar-lightGold`}
-          >
-            Banquet Halls
-          </button>
-          <button
-            onClick={() => scrollTo('brand-footer')}
-            className={`${scrolled
-                ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
-                : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
-              } transition-colors whitespace-nowrap`}
-          >
-            Contact Us
-          </button>
+          {NAV_ITEMS.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className={`transition-colors whitespace-nowrap ${
+                  isActive
+                    ? 'font-semibold dark:text-palegar-gold text-palegar-lightGold drop-shadow-sm'
+                    : scrolled
+                    ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
+                    : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
+                }`}
+              >
+                <span>{item.label}</span>
+              </button>
+            );
+          })}
         </nav>
 
         {/* Action CTAs & Theme Toggle */}
@@ -218,42 +215,22 @@ export default function Navbar({ onOpenOrderModal, onOpenConventionModal, onOpen
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div className="md:hidden dark:bg-palegar-bg/98 bg-palegar-lightBg/98 backdrop-blur-xl border-b dark:border-palegar-gold/20 border-palegar-lightGold/30 px-6 py-6 flex flex-col gap-4 animate-fadeIn">
-          <button
-            onClick={() => scrollTo('hero-experience')}
-            className="text-left text-base font-medium dark:text-palegar-text text-palegar-lightText hover:text-palegar-gold py-2 border-b dark:border-palegar-gold/10 border-palegar-lightGold/15"
-          >
-            Our Story & Heritage
-          </button>
-          <button
-            onClick={() => scrollTo('palegar-anatomy')}
-            className="text-left text-base font-medium dark:text-palegar-text text-palegar-lightText hover:text-palegar-gold py-2 border-b dark:border-palegar-gold/10 border-palegar-lightGold/15"
-          >
-            Cooking Traditions
-          </button>
-          <button
-            onClick={() => scrollTo('sensory-crucible')}
-            className="text-left text-base font-medium dark:text-palegar-text text-palegar-lightText hover:text-palegar-gold py-2 border-b dark:border-palegar-gold/10 border-palegar-lightGold/15"
-          >
-            Our Flavors & Spices
-          </button>
-          <button
-            onClick={() => scrollTo('royal-packs')}
-            className="text-left text-base font-medium dark:text-palegar-text text-palegar-lightText hover:text-palegar-gold py-2 border-b dark:border-palegar-gold/10 border-palegar-lightGold/15"
-          >
-            Signature Feasts
-          </button>
-          <button
-            onClick={() => scrollTo('conventions')}
-            className="text-left text-base font-medium dark:text-palegar-gold text-palegar-lightGold hover:text-palegar-gold py-2 border-b dark:border-palegar-gold/10 border-palegar-lightGold/15 font-semibold"
-          >
-            Palace Convention & Banquet Halls
-          </button>
-          <button
-            onClick={() => scrollTo('brand-footer')}
-            className="text-left text-base font-medium dark:text-palegar-text text-palegar-lightText hover:text-palegar-gold py-2 border-b dark:border-palegar-gold/10 border-palegar-lightGold/15"
-          >
-            Contact Us
-          </button>
+          {NAV_ITEMS.map((item) => {
+            const isActive = activeSection === item.id;
+            return (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className={`text-left text-base font-medium py-2 border-b dark:border-palegar-gold/10 border-palegar-lightGold/15 transition-colors ${
+                  isActive
+                    ? 'font-semibold dark:text-palegar-gold text-palegar-lightGold'
+                    : 'dark:text-palegar-text text-palegar-lightText hover:text-palegar-gold'
+                }`}
+              >
+                {item.label}
+              </button>
+            );
+          })}
 
           <div className="pt-2 flex flex-col gap-3">
             <button
