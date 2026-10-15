@@ -139,6 +139,25 @@ The application pairs an imperial serif for royal brand presence with an ergonom
 - **Tablet (`640px - 1024px`):** 2-column feature grids, expanded navigation controls.
 - **Desktop (`> 1024px`):** 3-column banquet hall showcase, sticky 60fps canvas sequence with floating text overlays.
 
+### 4. Custom Theme Dropdowns (`CustomDropdown.tsx`)
+- Standardized replacement for default browser `<select>` controls.
+- Glassmorphic card styling matching the dark (`bg-palegar-card`) and light (`bg-white`) backgrounds.
+- Gold border highlights on hover and active open state (`border-palegar-gold`).
+- Gold Lucide `<ChevronDown />` rotated 180° when open.
+- Absolute dropdown list with backdrop blur, item hover gold glow, and active item check indicator.
+
+### 5. Banquet Hall Split Carousel UI (`ConventionBookingModal.tsx` & `ConventionBookingSection.tsx`)
+- **Split Layout:** High-visibility two-column layout on desktop:
+  - Left column: Comprehensive reservation and banquet booking form.
+  - Right column: Interactive 4K Royal Hall gallery carousel (`palegar-banquet-hall.jpg`, `banquet-stage-decor.jpg`, `banquet-dining-buffet.jpg`, `banquet-corporate-event.jpg`).
+- **Autoplay Cadence:** Smooth continuous slide transition every 5 seconds.
+- **Manual Interaction Pause:** When the user clicks the Next/Prev navigation buttons, autoplay pauses for 5 seconds to allow undisturbed inspection, then seamlessly resumes.
+- **Form-Image Sync:** Form option selections automatically synchronize preview slides with relevant hall setup contexts (e.g., Stage decor for Weddings, Buffet for Banquets).
+
+### 6. Standardized Reference Template Placeholders
+- Form placeholders use explicit bracketed reference templates (`e.g. [Guest Name]`, `e.g. [Organizer Full Name]`, `e.g. [name@domain.com]`, `e.g. [Company / Family Trust]`, `[Chandanapalli / Landmark], Hyderabad Road, Nalgonda, Telangana - 508001`, `e.g. [Stage Layout / Floral Requirements / Dietary Notes]`).
+- Visual clarity ensures users immediately recognize sample formats without confusing them with live customer data.
+
 ---
 
 ## 7. Design System Maintenance
@@ -148,3 +167,4 @@ When modifying UI components:
 - Use predefined Tailwind `palegar-*` tokens instead of arbitrary ad-hoc hex values.
 - Verify color contrast in both dark (`html.dark`) and light modes.
 - Keep `docs/DESIGN.md` in sync whenever new visual tokens or animation curves are introduced.
+

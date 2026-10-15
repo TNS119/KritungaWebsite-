@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Crown, X, Calendar, Clock, Users, CheckCircle2, MessageSquare, Loader2, Building, MapPin } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import api, { Outlet, ConventionResponseData } from '@/services/api';
+import CustomDropdown from '@/components/CustomDropdown';
 
 interface ConventionBookingModalProps {
   isOpen: boolean;
@@ -210,11 +211,11 @@ export default function ConventionBookingModal({ isOpen, onClose }: ConventionBo
                   <label className="block text-[11px] font-bold uppercase tracking-wider dark:text-palegar-gold text-palegar-lightGold mb-1">
                     Banquet Venue
                   </label>
-                  <div className="flex items-center gap-2.5 px-3 py-2 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 text-xs dark:text-palegar-text text-palegar-lightText">
+                  <div className="flex items-center gap-2.5 px-3.5 py-2 h-[52px] rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 text-xs dark:text-palegar-text text-palegar-lightText shadow-sm">
                     <MapPin className="w-4 h-4 dark:text-palegar-gold text-palegar-lightGold shrink-0" />
                     <div className="flex-1 min-w-0">
                       <span className="font-semibold dark:text-palegar-gold text-palegar-lightGold block truncate">Kritunga Restaurant — Nalgonda</span>
-                      <span className="text-[10px] opacity-80 block truncate">Chandanapalli, Hyderabad Road</span>
+                      <span className="text-[10px] opacity-80 block truncate">[Chandanapalli / Landmark], Hyderabad Road</span>
                     </div>
                   </div>
                 </div>
@@ -223,37 +224,42 @@ export default function ConventionBookingModal({ isOpen, onClose }: ConventionBo
                   <label className="block text-[11px] font-bold uppercase tracking-wider dark:text-palegar-gold text-palegar-lightGold mb-1">
                     Occasion / Event Type
                   </label>
-                  <select
+                  <CustomDropdown
                     value={eventType}
-                    onChange={(e) => setEventType(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
-                  >
-                    {EVENT_TYPES.map((t) => (
-                      <option key={t} value={t}>
-                        {t}
-                      </option>
-                    ))}
-                  </select>
+                    onChange={setEventType}
+                    options={EVENT_TYPES}
+                    heightClass="h-[52px]"
+                    subtitle="Celebration Setup"
+                  />
                 </div>
               </div>
 
-              {/* Single Hall Selection */}
+              {/* Single Hall Selection with Image Preview */}
               <div>
                 <label className="block text-[11px] font-bold uppercase tracking-wider dark:text-palegar-gold text-palegar-lightGold mb-1">
-                  Banquet Hall
+                  Selected Banquet Hall
                 </label>
-                <div className="p-3 rounded-xl border border-palegar-gold/40 dark:bg-palegar-card bg-palegar-lightCardHover flex items-center justify-between">
-                  <div>
-                    <p className="font-cinzel font-bold text-xs dark:text-palegar-text text-palegar-lightText">
-                      {HALL_NAME}
-                    </p>
-                    <p className="text-[10px] dark:text-palegar-gold text-palegar-lightGold">
-                      Exclusive Royal Hall &bull; Up to 100 Guests
+                <div className="p-3 rounded-2xl border border-palegar-gold/40 dark:bg-palegar-card bg-palegar-lightCardHover flex items-center gap-3">
+                  <div className="w-16 h-14 rounded-xl overflow-hidden border border-palegar-gold/40 shrink-0 shadow-sm">
+                    <img
+                      src="/images/conventions/palegar-banquet-hall.jpg"
+                      alt={HALL_NAME}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between gap-2">
+                      <p className="font-cinzel font-bold text-xs dark:text-palegar-text text-palegar-lightText truncate">
+                        {HALL_NAME}
+                      </p>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded-full dark:bg-palegar-crimson/30 bg-palegar-lightCrimson/10 text-palegar-gold font-bold shrink-0">
+                        2nd Floor · 100 Guests
+                      </span>
+                    </div>
+                    <p className="text-[10px] dark:text-palegar-gold text-palegar-lightGold truncate">
+                      Air-conditioned &bull; Floral Stage Mandap &bull; Crystal Chandeliers
                     </p>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full dark:bg-palegar-crimson/30 bg-palegar-lightCrimson/10 text-palegar-gold font-bold">
-                    Max 100
-                  </span>
                 </div>
               </div>
 
@@ -268,7 +274,7 @@ export default function ConventionBookingModal({ isOpen, onClose }: ConventionBo
                     required
                     value={organizerName}
                     onChange={(e) => setOrganizerName(e.target.value)}
-                    placeholder="e.g. Maharajah Vikramaditya"
+                    placeholder="e.g. [Organizer Full Name]"
                     className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
                   />
                 </div>
@@ -281,7 +287,7 @@ export default function ConventionBookingModal({ isOpen, onClose }: ConventionBo
                     required
                     value={organizerPhone}
                     onChange={(e) => setOrganizerPhone(e.target.value)}
-                    placeholder="e.g. +91 98765 43210"
+                    placeholder="e.g. +91 87XXXXXXX"
                     className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
                   />
                 </div>
@@ -296,7 +302,7 @@ export default function ConventionBookingModal({ isOpen, onClose }: ConventionBo
                     type="email"
                     value={organizerEmail}
                     onChange={(e) => setOrganizerEmail(e.target.value)}
-                    placeholder="e.g. organizer@domain.com"
+                    placeholder="e.g. [name@domain.com]"
                     className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
                   />
                 </div>
@@ -308,7 +314,7 @@ export default function ConventionBookingModal({ isOpen, onClose }: ConventionBo
                     type="text"
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
-                    placeholder="e.g. Rayala Heritage Trust"
+                    placeholder="e.g. [Company / Family Trust]"
                     className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
                   />
                 </div>
@@ -346,17 +352,12 @@ export default function ConventionBookingModal({ isOpen, onClose }: ConventionBo
                   <label className="block text-[11px] font-bold uppercase tracking-wider dark:text-palegar-gold text-palegar-lightGold mb-1">
                     Session Slot *
                   </label>
-                  <select
+                  <CustomDropdown
                     value={timeSlot}
-                    onChange={(e) => setTimeSlot(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
-                  >
-                    {TIME_SLOTS.map((slot) => (
-                      <option key={slot} value={slot}>
-                        {slot}
-                      </option>
-                    ))}
-                  </select>
+                    onChange={setTimeSlot}
+                    options={TIME_SLOTS}
+                    heightClass="h-[42px]"
+                  />
                 </div>
               </div>
 
@@ -365,17 +366,12 @@ export default function ConventionBookingModal({ isOpen, onClose }: ConventionBo
                 <label className="block text-[11px] font-bold uppercase tracking-wider dark:text-palegar-gold text-palegar-lightGold mb-1">
                   Royal Catering & Banquet Feast Style
                 </label>
-                <select
+                <CustomDropdown
                   value={cateringPreference}
-                  onChange={(e) => setCateringPreference(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
-                >
-                  {CATERING_STYLES.map((c) => (
-                    <option key={c} value={c}>
-                      {c}
-                    </option>
-                  ))}
-                </select>
+                  onChange={setCateringPreference}
+                  options={CATERING_STYLES}
+                  heightClass="h-[44px]"
+                />
               </div>
 
               {/* Addon Services */}
@@ -420,7 +416,7 @@ export default function ConventionBookingModal({ isOpen, onClose }: ConventionBo
                   rows={2}
                   value={specialRequests}
                   onChange={(e) => setSpecialRequests(e.target.value)}
-                  placeholder="e.g. VIP stage layout, custom welcome ceremony, bridal diwan seating"
+                  placeholder="e.g. [Stage Layout / Floral Requirements / Dietary Notes]"
                   className="w-full px-3.5 py-2 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold resize-none"
                 />
               </div>

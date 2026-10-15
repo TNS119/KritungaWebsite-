@@ -86,7 +86,11 @@ router.post('/', async (req: Request, res: Response) => {
       tableType: newReservation.tableType
     }, branchName, branchAddress);
 
-    const waResult = await WhatsAppService.notifyCustomer(newReservation.guestPhone, waText);
+    const waResult = await WhatsAppService.notifyCustomer(
+      newReservation.guestPhone,
+      waText,
+      outlet?.phone
+    );
 
     res.status(201).json({
       success: true,

@@ -33,13 +33,12 @@ export default function Navbar({ onOpenOrderModal, onOpenConventionModal, onOpen
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
           ? 'dark:bg-palegar-bg/95 bg-white/95 backdrop-blur-md py-3 border-b dark:border-palegar-gold/20 border-palegar-lightGold/30 shadow-2xl dark:shadow-palegar-bg shadow-black/5'
           : 'bg-transparent py-5'
-      }`}
+        }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div className="w-full px-3 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Crest & Title */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -55,83 +54,75 @@ export default function Navbar({ onOpenOrderModal, onOpenConventionModal, onOpen
           </div>
           <div className="flex flex-col justify-center">
             <div className="flex items-center gap-2 leading-none">
-              <span className={`font-cinzel text-lg sm:text-xl font-bold tracking-widest ${
-                scrolled
+              <span className={`font-cinzel text-lg sm:text-xl font-bold tracking-widest ${scrolled
                   ? 'dark:text-palegar-text text-palegar-lightText'
                   : 'text-palegar-text drop-shadow-md'
-              } group-hover:text-palegar-gold transition-colors`}>
+                } group-hover:text-palegar-gold transition-colors`}>
                 KRITUNGA
               </span>
             </div>
-            <p className={`text-[9px] sm:text-[10px] tracking-widest ${
-              scrolled
+            <p className={`text-[9px] sm:text-[10px] tracking-widest ${scrolled
                 ? 'dark:text-palegar-gold/80 text-palegar-lightGold'
                 : 'text-palegar-goldLight'
-            } font-semibold uppercase mt-0.5`}>
+              } font-semibold uppercase mt-0.5`}>
               The Palegar&apos;s Cuisine
             </p>
           </div>
         </button>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden lg:flex items-center mx-4 xl:mx-8 gap-5 xl:gap-7 text-xs sm:text-sm font-medium tracking-wide">
+        <nav className="hidden lg:flex items-center ml-auto mr-6 xl:mr-8 gap-5 xl:gap-7 text-xs sm:text-sm font-medium tracking-wide">
           <button
             onClick={() => scrollTo('hero-experience')}
-            className={`${
-              scrolled
+            className={`${scrolled
                 ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
                 : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
-            } transition-colors inline-flex items-center gap-1.5 whitespace-nowrap group`}
+              } transition-colors inline-flex items-center gap-1.5 whitespace-nowrap group`}
           >
             <span>Our Story</span>
           </button>
           <button
             onClick={() => scrollTo('palegar-anatomy')}
-            className={`${
-              scrolled
+            className={`${scrolled
                 ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
                 : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
-            } transition-colors inline-flex items-center gap-1.5 whitespace-nowrap group`}
+              } transition-colors inline-flex items-center gap-1.5 whitespace-nowrap group`}
           >
             <span>Heritage</span>
           </button>
           <button
             onClick={() => scrollTo('sensory-crucible')}
-            className={`${
-              scrolled
+            className={`${scrolled
                 ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
                 : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
-            } transition-colors whitespace-nowrap`}
+              } transition-colors whitespace-nowrap`}
           >
             Our Flavors
           </button>
           <button
             onClick={() => scrollTo('royal-packs')}
-            className={`${
-              scrolled
+            className={`${scrolled
                 ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
                 : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
-            } transition-colors whitespace-nowrap`}
+              } transition-colors whitespace-nowrap`}
           >
             Signature Feasts
           </button>
           <button
             onClick={() => scrollTo('conventions')}
-            className={`${
-              scrolled
+            className={`${scrolled
                 ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
                 : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
-            } transition-colors whitespace-nowrap font-semibold dark:text-palegar-gold text-palegar-lightGold`}
+              } transition-colors whitespace-nowrap font-semibold dark:text-palegar-gold text-palegar-lightGold`}
           >
             Banquet Halls
           </button>
           <button
             onClick={() => scrollTo('brand-footer')}
-            className={`${
-              scrolled
+            className={`${scrolled
                 ? 'dark:text-palegar-text/80 text-palegar-lightText/80 hover:text-palegar-gold dark:hover:text-palegar-gold'
                 : 'text-palegar-text/90 hover:text-palegar-goldLight drop-shadow'
-            } transition-colors whitespace-nowrap`}
+              } transition-colors whitespace-nowrap`}
           >
             Contact Us
           </button>
@@ -142,11 +133,10 @@ export default function Navbar({ onOpenOrderModal, onOpenConventionModal, onOpen
           {/* Luxury Sun / Moon Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className={`relative p-2.5 rounded-full border ${
-              scrolled
+            className={`relative p-2.5 rounded-full border ${scrolled
                 ? 'dark:border-palegar-gold/40 border-palegar-lightGold/50 dark:bg-palegar-card/80 bg-white shadow-sm'
                 : 'border-palegar-gold/60 bg-black/40 backdrop-blur-md'
-            } hover:scale-110 active:scale-95 transition-all duration-300 group flex items-center justify-center`}
+              } hover:scale-110 active:scale-95 transition-all duration-300 group flex items-center justify-center`}
             title={`Switch to ${theme === 'dark' ? 'Light Palace' : 'Dark Obsidian'} theme`}
             id="nav-theme-toggle"
             aria-label="Toggle Dark and Light theme"
@@ -161,11 +151,10 @@ export default function Navbar({ onOpenOrderModal, onOpenConventionModal, onOpen
           {/* Convention Hall Booking CTA */}
           <button
             onClick={onOpenConventionModal || (() => scrollTo('conventions'))}
-            className={`px-3.5 py-2 rounded-full border ${
-              scrolled
+            className={`px-3.5 py-2 rounded-full border ${scrolled
                 ? 'dark:border-palegar-gold/40 border-palegar-lightGold/50 dark:text-palegar-gold text-palegar-lightGold dark:hover:bg-palegar-gold/15 hover:bg-palegar-lightGold/10'
                 : 'border-palegar-gold/60 text-palegar-goldLight hover:bg-palegar-gold/20 bg-black/30 backdrop-blur-sm'
-            } text-xs font-semibold tracking-wider uppercase transition-all flex items-center gap-1.5 whitespace-nowrap shadow-sm`}
+              } text-xs font-semibold tracking-wider uppercase transition-all flex items-center gap-1.5 whitespace-nowrap shadow-sm`}
             id="nav-convention-btn"
           >
             <Crown className="w-3.5 h-3.5 text-palegar-gold shrink-0" />
@@ -175,11 +164,10 @@ export default function Navbar({ onOpenOrderModal, onOpenConventionModal, onOpen
           {/* Table Booking CTA */}
           <button
             onClick={onOpenReservationModal}
-            className={`px-3.5 py-2 rounded-full border ${
-              scrolled
+            className={`px-3.5 py-2 rounded-full border ${scrolled
                 ? 'dark:border-palegar-gold/40 border-palegar-lightGold/50 dark:text-palegar-gold text-palegar-lightGold dark:hover:bg-palegar-gold/15 hover:bg-palegar-lightGold/10'
                 : 'border-palegar-gold/60 text-palegar-goldLight hover:bg-palegar-gold/20 bg-black/30 backdrop-blur-sm'
-            } text-xs font-semibold tracking-wider uppercase transition-all flex items-center gap-1.5 whitespace-nowrap shadow-sm`}
+              } text-xs font-semibold tracking-wider uppercase transition-all flex items-center gap-1.5 whitespace-nowrap shadow-sm`}
             id="nav-call-btn"
           >
             <PhoneCall className="w-3.5 h-3.5 text-palegar-gold shrink-0" />
@@ -201,11 +189,10 @@ export default function Navbar({ onOpenOrderModal, onOpenConventionModal, onOpen
         <div className="flex sm:hidden items-center gap-2">
           <button
             onClick={toggleTheme}
-            className={`relative p-2.5 rounded-full border ${
-              scrolled
+            className={`relative p-2.5 rounded-full border ${scrolled
                 ? 'dark:border-palegar-gold/40 border-palegar-lightGold/50 dark:bg-palegar-card/80 bg-white shadow-sm'
                 : 'border-palegar-gold/60 bg-black/40 backdrop-blur-md'
-            } active:scale-95 transition-all duration-300 flex items-center justify-center`}
+              } active:scale-95 transition-all duration-300 flex items-center justify-center`}
             aria-label="Toggle Dark and Light theme"
             title={`Switch to ${theme === 'dark' ? 'Light Palace' : 'Dark Obsidian'} theme`}
           >
@@ -217,11 +204,10 @@ export default function Navbar({ onOpenOrderModal, onOpenConventionModal, onOpen
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className={`p-2 transition-colors ${
-              scrolled
+            className={`p-2 transition-colors ${scrolled
                 ? 'dark:text-palegar-gold text-palegar-lightGold'
                 : 'text-palegar-text drop-shadow'
-            } hover:text-palegar-gold focus:outline-none`}
+              } hover:text-palegar-gold focus:outline-none`}
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

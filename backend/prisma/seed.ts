@@ -7,8 +7,8 @@ const OUTLETS = [
     id: "nalgonda-flagship",
     name: "Kritunga Restaurant — Nalgonda",
     city: "Nalgonda",
-    address: "Chandanapalli, Hyderabad Road, Nalgonda, Telangana 508001",
-    phone: "+91 91234 56789"
+    address: "[Chandanapalli / Landmark], Hyderabad Road, Nalgonda, Telangana - 508001",
+    phone: "+91 87XXXXX001"
   }
 ];
 
@@ -50,16 +50,16 @@ const MENU_ITEMS = [
     description: "Tender bone-in prime lamb morsels braised with freshly harvested tart Gongura leaves, crushed peppercorns, and served with aromatic Palegar Jeera Rice."
   },
   {
-    id: "royal-palegar-banquet",
-    slug: "royal-palegar-banquet",
-    name: "Royal Palegar Grand Banquet",
-    subtitle: "The Complete Emperor's Feast (Serves 4)",
-    tag: "ULTIMATE FEAST BOX",
-    price: 1499,
-    originalPrice: 1899,
-    portion: "Serves 4-5 (2.8kg)",
+    id: "ulavacharu-kodi-biryani",
+    slug: "ulavacharu-kodi-biryani",
+    name: "Ulavacharu Kodi Dum Biryani",
+    subtitle: "Slow-Simmered Horsegram Reduction with Tender Chicken",
+    tag: "KRITUNGA CULT LEGEND",
+    price: 499,
+    originalPrice: 599,
+    portion: "Serves 1-2 (800g)",
     spiceLevel: 4,
-    description: "The ultimate royal gathering box: 1x Palegar Mutton Biryani, 1x Natu Kodi Fry, 1x Gongura Paneer Tikka, 4x Butter Naan, Raitha, Mirchi Salan, and Royal Double Ka Meetha."
+    description: "Aged royal basmati infused with an 18-hour slow-brewed Ulavacharu (horsegram lentil) reduction, succulent country chicken, roasted cashews, and fresh desi ghee cream."
   }
 ];
 

@@ -145,28 +145,28 @@ export const PRODUCT_PACKS: ProductPack[] = [
     }
   },
   {
-    id: "royal-palegar-banquet",
-    name: "Royal Palegar Grand Banquet",
-    subtitle: "The Complete Emperor's Feast (Serves 4)",
-    tag: "ULTIMATE FEAST BOX",
-    price: 1499,
-    originalPrice: 1899,
-    portion: "Serves 4-5 (2.8kg)",
+    id: "ulavacharu-kodi-biryani",
+    name: "Ulavacharu Kodi Dum Biryani",
+    subtitle: "Slow-Simmered Horsegram Reduction with Tender Chicken",
+    tag: "KRITUNGA CULT LEGEND",
+    price: 499,
+    originalPrice: 599,
+    portion: "Serves 1-2 (800g)",
     spiceLevel: 4,
-    image: "/images/dishes/royal-palegar-banquet.jpg",
-    description: "The ultimate royal gathering box: 1x Palegar Mutton Biryani, 1x Natu Kodi Fry, 1x Gongura Paneer Tikka, 4x Butter Naan, Raitha, Mirchi Salan, and Royal Double Ka Meetha.",
+    image: "/images/dishes/ulavacharu-kodi-biryani.jpg",
+    description: "Kritunga's signature cult dish: aged royal basmati infused with an 18-hour slow-brewed Ulavacharu (horsegram lentil) reduction, succulent country chicken, roasted cashews, and fresh desi ghee cream.",
     highlights: [
-      "Full Spread of Signature Meats & Breads",
-      "Includes 2x Royal Desserts (Double Ka Meetha & Gulab Jamun)",
-      "Served in Premium Insulated Royal Caskets",
-      "Complete Accompaniments & Palegar Digestifs"
+      "Traditional 18-Hour Simmered Horsegram Reduction",
+      "Tender Bone-In Chicken Glazed in Aromatic Masala",
+      "Garnished with Roasted Cashews & Fresh Malai",
+      "Served with Tangy Mirchi Ka Salan & Onion Raitha"
     ],
-    badges: ["Family Banquet", "Includes Starters & Desserts", "Free Delivery"],
+    badges: ["Cult Signature", "100% Desi Ghee", "High Protein"],
     specs: {
-      dumHours: "Freshly Assembled to Order",
-      spiceBlend: "Complete Master Potli Selection",
-      oilGhee: "Royal Golden Ghee Trio",
-      aromaProfile: "Full Royal Palegar Feast Bouquet"
+      dumHours: "3 Hours Slow Clay Dum",
+      spiceBlend: "Ulavacharu Essence & Roasted Guntur Chillies",
+      oilGhee: "Pure A2 Cow Ghee + Fresh Cream",
+      aromaProfile: "Earthy Horsegram, Cumin & Toasted Cashew"
     }
   }
 ];

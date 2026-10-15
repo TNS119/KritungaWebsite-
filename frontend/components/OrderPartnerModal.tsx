@@ -10,7 +10,7 @@ interface OrderPartnerModalProps {
 
 const NALGONDA_PARTNERS = {
   outletName: 'Kritunga Restaurant — Nalgonda',
-  location: 'Chandanapalli, Hyderabad Road, Nalgonda, Telangana',
+  location: '[Chandanapalli / Landmark], Hyderabad Road, Nalgonda, Telangana - 508001',
   swiggyUrl: 'https://www.swiggy.com/city/nalgonda/kritunga-restaurant-chandanapalli-rest1223831?source=sharing',
   zomatoUrl: 'https://www.zomato.com/nalgonda/kritunga-nalgonda-locality/order',
 };

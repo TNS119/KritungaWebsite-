@@ -133,7 +133,11 @@ router.post('/', async (req: Request, res: Response) => {
       cateringPreference: newConventionBooking.cateringPreference
     }, branchName);
 
-    const waResult = await WhatsAppService.notifyCustomer(newConventionBooking.organizerPhone, waText);
+    const waResult = await WhatsAppService.notifyCustomer(
+      newConventionBooking.organizerPhone,
+      waText,
+      outlet?.phone
+    );
 
     res.status(201).json({
       success: true,

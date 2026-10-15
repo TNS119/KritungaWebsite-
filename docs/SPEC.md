@@ -20,7 +20,10 @@ Kritunga The Palegar's Cuisine is a digital brand and hospitality experience des
   - Dedicated to Kritunga Nalgonda Flagship with date selection (`min={today}`), dining slot, seating ambience, and instant WhatsApp booking confirmation.
 - **Royal Convention Booking UI (`ConventionBookingSection.tsx` & `ConventionBookingModal.tsx`):**
   - Placed before Footer (`id="conventions"`) and linked via Navbar and SectionNav.
-  - Dedicated to the *Grand Palegar Convention Hall (Max 100 Guests capacity)* at Nalgonda Flagship.
+  - Dedicated to the *Palegar Banquet Hall (2nd Floor, 100 Guests capacity)* at Nalgonda.
+  - High-visibility split UI: Left-side comprehensive reservation form and right-side interactive 4K Royal Hall carousel gallery with continuous auto-advance (5-second pause on user interaction).
+  - Standardized reference template placeholders (`e.g. [Guest Name]`, `e.g. [Organizer Full Name]`, `e.g. [name@domain.com]`, `e.g. [Company / Family Trust]`, `[Chandanapalli / Landmark], Hyderabad Road, Nalgonda, Telangana - 508001`, `e.g. [Stage Layout / Floral Requirements / Dietary Notes]`).
+  - Royal `CustomDropdown` component replacing browser default `<select>` for all occasion, dining ambience, and venue selectors.
   - Comprehensive booking form capturing Organizer Name, Phone, Email, Event Type, Date, Session/Time Slot, Guest Count (10-100), Catering Style, Add-on Services, and Special Requests.
   - Submission confirmation screen displaying reference `#CNV-XXXX`, status badge, and WhatsApp Concierge dispatch link.
 - **Convention Booking Backend Pipeline:**

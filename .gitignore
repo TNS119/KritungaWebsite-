@@ -17,6 +17,9 @@ frontend/.next/
 out/
 frontend/out/
 .turbo/
+.vercel/
+frontend/.vercel/
+.swc/
 
 # 3. Backend & TypeScript Builds
 dist/
@@ -24,7 +27,7 @@ backend/dist/
 build/
 *.tsbuildinfo
 
-# 4. Databases & SQLite Artifacts (Crucial - Never track data binaries)
+# 4. Databases & SQLite Artifacts (Crucial - Never track binary databases)
 *.db
 *.db-journal
 *.db-wal
@@ -37,27 +40,40 @@ backend/prisma/*.db-wal
 backend/prisma/*.db-shm
 backend/data/
 data/
+docker-data/
+backend-data/
 
 # 5. Environment & Secret Keys
 .env
+.env.*
 .env*.local
 .env.production
 .env.staging
+.env.development
 backend/.env
+backend/.env.*
 backend/.env*.local
+backend/.env.production
+frontend/.env
+frontend/.env.*
 frontend/.env.local
 frontend/.env*.local
+frontend/.env.production
 
 # Preserve example templates
 !.env.example
 !backend/.env.example
 !frontend/.env.example
 
-# SSL & Security Credentials
+# SSL, Tokens & Security Credentials
 *.pem
 *.key
 *.cert
 *.crt
+*.p12
+*.pfx
+*.id_rsa
+*.id_ed25519
 
 # 6. Logs & Process Managers
 logs/
@@ -69,6 +85,8 @@ pnpm-debug.log*
 lerna-debug.log*
 .pm2/
 pm2.log
+*.pid
+*.pid.lock
 
 # 7. Testing & Coverage
 coverage/
@@ -76,7 +94,15 @@ frontend/coverage/
 backend/coverage/
 .nyc_output/
 
-# 8. Operating System Metadata
+# 8. Python & Media Processing Scripts
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# 9. Operating System Metadata
 # macOS
 .DS_Store
 .DS_Store?
@@ -92,7 +118,7 @@ ehthumbs_vista.db
 Desktop.ini
 $RECYCLE.BIN/
 
-# 9. IDEs & Editors
+# 10. IDEs & Agent Workspaces
 .vscode/
 .idea/
 *.suo
@@ -101,9 +127,12 @@ $RECYCLE.BIN/
 *.sln
 *.sw?
 *.bak
+.gemini/
+.agents/
 
-# 10. Temporary Files & Scratch Assets
+# 11. Temporary Files & Scratch Assets
 ezgif-*/
 scratch/
 tmp/
 temp/
+

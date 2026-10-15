@@ -9,10 +9,18 @@ export interface WhatsAppMessageResult {
 }
 
 export class WhatsAppService {
-  private static apiToken = process.env.WHATSAPP_API_TOKEN || '';
-  private static phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID || '';
-  private static businessPhone = process.env.WHATSAPP_BUSINESS_PHONE || '+918049652255';
-  private static frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+  private static get apiToken(): string {
+    return process.env.WHATSAPP_TOKEN || process.env.WHATSAPP_API_TOKEN || '';
+  }
+  private static get phoneNumberId(): string {
+    return process.env.WHATSAPP_PHONE_NUMBER_ID || process.env.WHATSAPP_PHONE_ID || '';
+  }
+  public static get businessPhone(): string {
+    return process.env.WHATSAPP_BUSINESS_PHONE || '+9187XXXXX001';
+  }
+  private static get frontendUrl(): string {
+    return (process.env.FRONTEND_URL || 'http://localhost:3000').split(',')[0].trim();
+  }
 
   /**
    * Builds the formatted message text for a royal order.
@@ -120,9 +128,13 @@ _Our Royal Banquet Concierge will contact you within 2 business hours with layou
    */
   public static async notifyCustomer(
     customerPhone: string,
-    messageText: string
+    messageText: string,
+    destinationBusinessPhone?: string
   ): Promise<WhatsAppMessageResult> {
-    const webUrl = this.generateWebUrl(customerPhone, messageText);
+    // In Click-to-Chat mode on the website, the user clicking is the customer.
+    // The link opens a chat TO the restaurant business phone so the customer sends the booking to the restaurant.
+    const chatRecipient = destinationBusinessPhone || this.businessPhone;
+    const webUrl = this.generateWebUrl(chatRecipient, messageText);
 
     // If Cloud API credentials exist, attempt real programmatic dispatch
     if (this.apiToken && this.phoneNumberId) {

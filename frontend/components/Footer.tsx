@@ -17,9 +17,9 @@ export default function Footer() {
 
   const NALGONDA_OUTLET = {
     name: 'Kritunga Restaurant — Nalgonda',
-    landmark: 'Chandanapalli, Hyderabad Road',
-    city: 'Nalgonda, Telangana 508001',
-    phone: '+91 91234 56789',
+    landmark: '[Chandanapalli / Landmark], Hyderabad Road',
+    city: 'Nalgonda, Telangana - 508001',
+    phone: '+91 87XXXXX001',
     swiggyUrl: 'https://www.swiggy.com/city/nalgonda/kritunga-restaurant-chandanapalli-rest1223831?source=sharing',
     zomatoUrl: 'https://www.zomato.com/nalgonda/kritunga-nalgonda-locality/order',
   };
@@ -151,8 +151,8 @@ export default function Footer() {
               <div className="pt-3">
                 <div className="flex items-center gap-2 dark:text-palegar-gold text-palegar-lightGold">
                   <Phone className="w-3.5 h-3.5" />
-                  <a href="tel:+918049652255" className="hover:underline font-mono">
-                    +91 80 4965 2255
+                  <a href="tel:+9187XXXXX001" className="hover:underline font-mono">
+                    +91 87XXXXX001
                   </a>
                 </div>
               </div>
@@ -175,7 +175,7 @@ export default function Footer() {
                   required
                   value={newsletterEmail}
                   onChange={(e) => setNewsletterEmail(e.target.value)}
-                  placeholder="Enter your email"
+                  placeholder="e.g. [name@domain.com]"
                   className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 text-xs dark:text-palegar-text text-palegar-lightText placeholder:dark:text-palegar-muted/50 placeholder:text-palegar-lightMuted/50 focus:outline-none focus:border-palegar-gold shadow-sm"
                 />
                 <button

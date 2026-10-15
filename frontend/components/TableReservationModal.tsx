@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Utensils, X, Calendar, Clock, Users, Crown, CheckCircle2, MessageSquare, Loader2, MapPin } from 'lucide-react';
 import api, { Outlet, ReservationResponseData } from '@/services/api';
+import CustomDropdown from '@/components/CustomDropdown';
 
 interface TableReservationModalProps {
   isOpen: boolean;
@@ -158,10 +159,10 @@ export default function TableReservationModal({ isOpen, onClose }: TableReservat
                   <MapPin className="w-4 h-4 dark:text-palegar-gold text-palegar-lightGold shrink-0" />
                   <div className="flex-1">
                     <span className="font-semibold dark:text-palegar-gold text-palegar-lightGold">Kritunga Restaurant — Nalgonda</span>
-                    <span className="text-[11px] opacity-80 block">Chandanapalli, Hyderabad Road, Nalgonda</span>
+                    <span className="text-[11px] opacity-80 block">[Chandanapalli / Landmark], Hyderabad Road, Nalgonda</span>
                   </div>
                   <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full dark:bg-palegar-gold/20 bg-palegar-lightGold/20 dark:text-palegar-gold text-palegar-lightGold border dark:border-palegar-gold/30 border-palegar-lightGold/30">
-                    Flagship
+                    Nalgonda
                   </span>
                 </div>
               </div>
@@ -177,7 +178,7 @@ export default function TableReservationModal({ isOpen, onClose }: TableReservat
                     required
                     value={guestName}
                     onChange={(e) => setGuestName(e.target.value)}
-                    placeholder="e.g. Vikramaditya"
+                    placeholder="e.g. [Guest Name]"
                     className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 text-xs dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
                   />
                 </div>
@@ -190,7 +191,7 @@ export default function TableReservationModal({ isOpen, onClose }: TableReservat
                     required
                     value={guestPhone}
                     onChange={(e) => setGuestPhone(e.target.value)}
-                    placeholder="e.g. +91 98765 43210"
+                    placeholder="e.g. +91 87XXXXXXX"
                     className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 text-xs dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
                   />
                 </div>
@@ -215,18 +216,19 @@ export default function TableReservationModal({ isOpen, onClose }: TableReservat
                   <label className="block text-[11px] font-bold uppercase tracking-wider dark:text-palegar-gold text-palegar-lightGold mb-1">
                     Dining Slot
                   </label>
-                  <select
+                  <CustomDropdown
                     value={timeSlot}
-                    onChange={(e) => setTimeSlot(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 text-xs dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
-                  >
-                    <option value="Lunch Banquet (12:30 PM)">Lunch Banquet (12:30 PM)</option>
-                    <option value="Lunch Banquet (1:30 PM)">Lunch Banquet (1:30 PM)</option>
-                    <option value="Lunch Banquet (2:30 PM)">Lunch Banquet (2:30 PM)</option>
-                    <option value="Imperial Dinner (7:30 PM)">Imperial Dinner (7:30 PM)</option>
-                    <option value="Imperial Dinner (8:30 PM)">Imperial Dinner (8:30 PM)</option>
-                    <option value="Imperial Dinner (9:30 PM)">Imperial Dinner (9:30 PM)</option>
-                  </select>
+                    onChange={setTimeSlot}
+                    options={[
+                      "Lunch Banquet (12:30 PM)",
+                      "Lunch Banquet (1:30 PM)",
+                      "Lunch Banquet (2:30 PM)",
+                      "Imperial Dinner (7:30 PM)",
+                      "Imperial Dinner (8:30 PM)",
+                      "Imperial Dinner (9:30 PM)"
+                    ]}
+                    heightClass="h-[42px]"
+                  />
                 </div>
               </div>
 
@@ -243,22 +245,23 @@ export default function TableReservationModal({ isOpen, onClose }: TableReservat
                     required
                     value={partySize}
                     onChange={(e) => setPartySize(parseInt(e.target.value, 10) || 1)}
-                    className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 text-xs dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
+                    className="w-full h-[42px] px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 text-xs dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
                   />
                 </div>
                 <div>
                   <label className="block text-[11px] font-bold uppercase tracking-wider dark:text-palegar-gold text-palegar-lightGold mb-1">
                     Seating Ambience
                   </label>
-                  <select
+                  <CustomDropdown
                     value={tableType}
-                    onChange={(e) => setTableType(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 text-xs dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
-                  >
-                    <option value="Royal Palegar Banquet Diwan">Royal Palegar Banquet Diwan</option>
-                    <option value="Regal Courtyard Table">Regal Courtyard Table</option>
-                    <option value="Private Heritage Fort Cabin">Private Heritage Fort Cabin</option>
-                  </select>
+                    onChange={setTableType}
+                    options={[
+                      "Royal Palegar Banquet Diwan",
+                      "Regal Courtyard Table",
+                      "Private Heritage Fort Cabin"
+                    ]}
+                    heightClass="h-[42px]"
+                  />
                 </div>
               </div>
 
@@ -270,7 +273,7 @@ export default function TableReservationModal({ isOpen, onClose }: TableReservat
                   type="text"
                   value={specialRequests}
                   onChange={(e) => setSpecialRequests(e.target.value)}
-                  placeholder="e.g. Birthday celebration, moderate spice preference"
+                  placeholder="e.g. [Special Occasion / Dietary Preference]"
                   className="w-full px-3.5 py-2.5 rounded-xl dark:bg-palegar-card bg-palegar-lightCardHover border dark:border-palegar-gold/30 border-palegar-lightGold/40 text-xs dark:text-palegar-text text-palegar-lightText focus:outline-none focus:border-palegar-gold"
                 />
               </div>
