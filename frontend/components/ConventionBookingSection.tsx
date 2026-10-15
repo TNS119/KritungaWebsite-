@@ -319,10 +319,10 @@ export default function ConventionBookingSection({ onOpenConventionModal }: Conv
           </p>
         </div>
 
-        {/* 2-Column Split: Left Booking Form & Right Highly-Visible Image Showcase */}
+        {/* 2-Column Split: Image Showcase on Left & Booking Form on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-          {/* Left Column (lg:col-span-6): Interactive Reservation Form */}
-          <div className="lg:col-span-6">
+          {/* Form Column (order-2 lg:order-2): Interactive Reservation Form on Right */}
+          <div className="lg:col-span-6 order-2 lg:order-2">
             <div id="booking-form" className="glass-panel rounded-3xl p-6 sm:p-9 border dark:border-palegar-gold/30 border-palegar-lightGold/40 shadow-2xl">
               {confirmationData ? (
                 /* Confirmation State */
@@ -388,7 +388,7 @@ export default function ConventionBookingSection({ onOpenConventionModal }: Conv
                         Banquet Reservation
                       </h3>
                       <p className="text-xs dark:text-palegar-muted text-palegar-lightMuted mt-0.5">
-                        Configure your celebration setup. Visuals on the right update automatically.
+                        Configure your celebration setup. Visuals on the left update automatically.
                       </p>
                     </div>
                     <span className="text-[11px] font-mono px-3 py-1 rounded-full dark:bg-palegar-card bg-slate-100 border dark:border-palegar-gold/30 border-palegar-lightGold/40 text-palegar-gold font-bold shrink-0">
@@ -658,8 +658,8 @@ export default function ConventionBookingSection({ onOpenConventionModal }: Conv
             </div>
           </div>
 
-          {/* Right Column (lg:col-span-6): Sticky, Majestic Grand Image Showcase */}
-          <div className="lg:col-span-6 lg:sticky lg:top-24 space-y-4">
+          {/* Showcase Column (order-1 lg:order-1): Sticky, Majestic Grand Image Showcase on Left */}
+          <div className="lg:col-span-6 order-1 lg:order-1 lg:sticky lg:top-24 space-y-4">
             <div className="glass-panel rounded-3xl border dark:border-palegar-gold/40 border-palegar-lightGold/50 shadow-2xl overflow-hidden">
               {/* Grand High-Res Continuous Cross-Fade Slideshow Display */}
               <div
